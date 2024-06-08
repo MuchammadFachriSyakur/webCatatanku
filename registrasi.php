@@ -44,14 +44,18 @@ if(isset($_POST['submitedFormLogin'])){
   }elseif($image_size > 1000000){
     echo "<script>alert('Pastikan gambar tidak melebihi 1mb!!!')</script>";
   }else{
-    $sql = "INSERT INTO user (username,password,email,image) VALUES ('$username','$hash_password','$email','$new_name_file')";
-    $query = mysqli_query($db,$sql);
-    if($query){
-      $regitrasi_message = "Akun berhasl dibuat";
-    }else{
+    try{
+      $sql = "INSERT INTO user (username,password,email,image) VALUES ('$username','$hash_password','$email','$new_name_file')";
+      $query = mysqli_query($db,$sql);
+      if($query){
+        $regitrasi_message = "Akun berhasl dibuat";
+        move_uploaded_file($image_tmp_name,'img/' . $new_name_file);
+      }else{
+        $regitrasi_message = "Akun gagal dibuat,silahkan coba lagi";
+      }
+    }catch(mysqli_sql_exception){
       $regitrasi_message = "Username yang anda masukan sudah ada!";
     }
-    move_uploaded_file($image_tmp_name,'img/' . $new_name_file);
   }
 }
 ?>
@@ -72,6 +76,8 @@ if(isset($_POST['submitedFormLogin'])){
  <div class="wrapForm">
    <form method="POST" class="form_edit_barang" enctype="multipart/form-data">
     <h1>Registrasi Member</h1>
+    
+    <p><?= $regitrasi_message; ?></p>
     
     <div class="form-group">
       <p><?= $message_error_username; ?></p>
