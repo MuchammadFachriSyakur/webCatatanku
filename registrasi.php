@@ -99,10 +99,11 @@ if(isset($_POST['submitedFormLogin'])){
     
     <input type="file" name="gambar_barang"/>
     
+    <a href="index.php">Sudah mempunyai akun?</a>
+    
     <button type="submit" class="submitedFormLogin" name="submitedFormLogin">submit</button>
   </form>
    
  </div>
-  
 </body>
 </html>
