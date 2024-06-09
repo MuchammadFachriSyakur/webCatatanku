@@ -1,0 +1,110 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-image: url('../../img/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+}
+.wrapForm{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.wrapForm form{
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgb(255,255,255,0.2);
+  border-radius: 24px;
+  background-color: transparent;
+  padding: 16px 24px;
+}
+.wrapForm form .title{
+  margin-bottom: 36px;
+  color: #fff;
+}
+.wrapForm form .file{
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 28px;
+}
+.wrapForm form .form-group{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  background-color: #f0f0f0;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 4px;
+}
+.wrapForm form .message{
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  margin-bottom: 8px;
+  padding: 12px 8px;
+  font-size: 14px;
+  color: #fff;
+}
+.wrapForm form .form-group input{
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 12px 8px;
+  background-color: transparent;
+  font-size: 14px;
+}
+.wrapForm form .wrapEye{
+  box-sizing: border-box;
+  display: flex;
+  font-size: 18px;
+  padding: 8px;
+}
+.wrapForm form .wrapEye .ph-eye-slash{
+  display: none;
+}
+.wrapForm form a{
+  font-size: 14px;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.wrapForm form .submitedFormLogin{
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 24px;
+  background-color: transparent;
+  border: 2px solid #6366F1;
+  background-color: #6366F1;
+  color: white;
+  border-radius: 24px;
+  animation: all 300ms ease-in-out;
+}
+.wrapForm form .submitedFormLogin:hover{
+  background-color: white;
+  color: #6366F1;
+}
