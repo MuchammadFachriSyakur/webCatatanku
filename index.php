@@ -36,8 +36,7 @@ if(isset($_POST['submitedFormLogin'])){
   }
   
 }
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -45,6 +44,7 @@ if(isset($_POST['submitedFormLogin'])){
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Catatanku || Login</title>
   <link rel="stylesheet" href="src/css/login.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -53,23 +53,28 @@ if(isset($_POST['submitedFormLogin'])){
   
  <div class="wrapForm">
    <form action="" method="POST">
-     <h1>Login member</h1>
+    <h1 class="title">Login member</h1>
      
+    <p class="message"><?= $login_message; ?></p>
+    
     <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" name="username">
+      <input type="text" name="username" placeholder="Username">
     </div>
     
     <div class="form-group">
-      <label for="username">Password:</label>
-      <input type="password" name="password">
+      <input type="password" class="password" name="password" placeholder="Password">
+      <div class="wrapEye">
+        <i class="ph ph-eye-slash"></i>
+        <i class="ph ph-eye"></i>
+      </div>
     </div>
     
-    <a href="registrasi.php">Belum mempunyai akun?</a>
+    <a href="registrasi.php">Sudah memiliki akun?</a>
 
-    <button type="submit" name="submitedFormLogin">Login</button>
+    <button type="submit" class="submitedFormLogin" name="submitedFormLogin">Login</button>
   </form>
  </div>
-  
+
+<script src="src/js/login.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
