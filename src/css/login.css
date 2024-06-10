@@ -71,6 +71,7 @@ body{
   width: 100%;
   outline: none;
   border: none;
+  border-radius: 24px;
   padding: 12px 8px;
   background-color: transparent;
   font-size: 14px;
@@ -107,4 +108,4 @@ body{
 .wrapForm form .submitedFormLogin:hover{
   background-color: white;
   color: #6366F1;
-}
+  }
