@@ -34,9 +34,32 @@ if(isset($_POST['submitedFormLogin'])){
       }
     }
   }
-  
 }
-?><!DOCTYPE html>
+
+if(isset($_POST['forgotPassword'])){
+  $username = htmlspecialchars($_POST['username']);
+  $password = htmlspecialchars($_POST['password']);
+  
+  $sql = "SELECT * FROM user WHERE username='$username'";
+  $query = mysqli_query($db,$sql);
+  
+  if(mysqli_num_rows($query) > 0){
+   $data = mysqli_fetch_array($query);
+   $idUsername = $data['id'];
+   $usernameFix = $data['username'];
+   
+   $targetUrl = "forgotPassword.php";
+   $urlWithParam = $targetUrl . "id=" . $idUsername . "&username=" . $usernameFix . "&forgotPassword";
+   
+   echo "<script>window.location.href = 'forgotPassword.php?id=" . $idUsername . "&username=" . $usernameFix . "&forgotPassword" . "';</script>";
+  }else{
+    $login_message = "Username tidak ada";
+  }
+}
+
+
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -69,8 +92,10 @@ if(isset($_POST['submitedFormLogin'])){
       </div>
     </div>
     
-    <a href="registrasi.php">Sudah memiliki akun?</a>
+    <a href="registrasi.php">Belum memiliki akun?</a>
 
+    <button type="submit" name="forgotPassword">Lupa Password?</button>
+    
     <button type="submit" class="submitedFormLogin" name="submitedFormLogin">Login</button>
   </form>
  </div>
