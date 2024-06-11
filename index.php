@@ -14,26 +14,43 @@ if(isset($_POST['submitedFormLogin'])){
     $sql = "SELECT * FROM user WHERE username='$username' AND password='$hash_password'";
     $query = mysqli_query($db,$sql);
     
+    // Cek username
     if(mysqli_num_rows($query) > 0){
       $data = mysqli_fetch_array($query);
       $user_name = $data['username'];
+      $user_password = $data['password'];
       $user_level = $data['level'];
       
-      if($user_level == "admin"){
-        $_SESSION['username'] = $user_name;
-        $_SESSION['is_login_admin'] = true;
-        echo "<script>
-        window.location.href = 'dashboard_admin.php';
-        </script>";
-      }else{
-        $_SESSION['username'] = $user_name;
-        $_SESSION['is_login_admin'] = true;
-        echo "<script>
-        window.location.href = 'dashboard_user.php';
-        </script>";
+      echo "Password User didatabase adalah: " . $user_password;
+      echo "Password User diinput adalah: " . $hash_password;
+      
+      // Cek Password
+      if($user_password == $hash_password){
+        echo "Pasword benar";
+        
+        // Cek Level akun
+        if($user_level == "admin"){
+          echo "Level akun adalah : admin";
+          $_SESSION['username'] = $user_name;
+          $_SESSION['is_login_admin'] = true;
+          echo "<script>
+            window.location.href = 'dashboard_admin.php';
+          </script>";
+        }else{
+          echo "Level akun adalah : user";
+          $_SESSION['username'] = $user_name;
+          $_SESSION['is_login_user'] = true;
+          echo "<script>
+            window.location.href = 'dashboard_user.php';
+          </script>";
+        }
       }
     }
+    
+    $error = true;
+    
   }
+  
 }
 
 if(isset($_POST['forgotPassword'])){
