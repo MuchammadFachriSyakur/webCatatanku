@@ -3,6 +3,24 @@ session_start();
 include("database/config.php");
 $login_message = "";
 
+if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
+  $id = $_COOKIE['id'];
+  $key = $_COOKIE['key'];
+
+  $sql = "SELECT username FROM user WHERE id='$id'";
+  $result = mysqli_query($db,$sql);
+
+  $data = mysqli_fetch_assoc($result);
+
+  // Cek cookie dan username 
+  if($key === hash('sha256',$data['username'])){
+    $_SESSION['is_login_user'] = true;
+    echo "<script>
+     window.location.href = 'dashboard_user.php';
+    </script>";
+  }
+}
+
 if(isset($_POST['submitedFormLogin'])){
   $username = htmlspecialchars($_POST['username']);
   $password = htmlspecialchars($_POST['password']);
@@ -17,6 +35,7 @@ if(isset($_POST['submitedFormLogin'])){
     // Cek username
     if(mysqli_num_rows($query) > 0){
       $data = mysqli_fetch_array($query);
+      $user_id = $data['id'];
       $user_name = $data['username'];
       $user_password = $data['password'];
       $user_level = $data['level'];
@@ -33,6 +52,11 @@ if(isset($_POST['submitedFormLogin'])){
           echo "Level akun adalah : admin";
           $_SESSION['username'] = $user_name;
           $_SESSION['is_login_admin'] = true;
+
+          if($_POST['remember_me'] == "on"){
+            echo $_POST['remember_me'];
+          } 
+
           echo "<script>
             window.location.href = 'dashboard_admin.php';
           </script>";
@@ -40,6 +64,12 @@ if(isset($_POST['submitedFormLogin'])){
           echo "Level akun adalah : user";
           $_SESSION['username'] = $user_name;
           $_SESSION['is_login_user'] = true;
+
+          if(isset($_POST['remember_me'])){
+            setcookie('id',$user_id,time()+120);
+            setcookie('key',hash('sha256',$user_name),time()+120);
+          }
+
           echo "<script>
             window.location.href = 'dashboard_user.php';
           </script>";
@@ -108,12 +138,22 @@ if(isset($_POST['forgotPassword'])){
         <i class="ph ph-eye"></i>
       </div>
     </div>
-    
-    <a href="registrasi.php">Belum memiliki akun?</a>
 
-    <button type="submit" name="forgotPassword">Lupa Password?</button>
+    <div class="form-cookie">
+      <input type="checkbox" name="remember_me">
+      <label for="">Ingat saya?</label>
+    </div>
+    
+    <div class="wrapHelp">
+
+      <a href="registrasi.php">Belum memiliki akun?</a>
+      
+      <button type="submit" name="forgotPassword">Lupa Password?</button>
+      
+    </div>
     
     <button type="submit" class="submitedFormLogin" name="submitedFormLogin">Login</button>
+
   </form>
  </div>
 
