@@ -1,19 +1,23 @@
 <?php
 session_start();
-include("database/config.php");
+include ("database/config.php");
 $login_message = "";
 
-if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
+if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
   $id = $_COOKIE['id'];
   $key = $_COOKIE['key'];
 
   $sql = "SELECT username FROM user WHERE id='$id'";
-  $result = mysqli_query($db,$sql);
+  $result = mysqli_query($db, $sql);
 
   $data = mysqli_fetch_assoc($result);
 
+  echo $key;
+  echo "<br>";
+  echo hash('sha256', $data['username']);
+
   // Cek cookie dan username 
-  if($key === hash('sha256',$data['username'])){
+  if ($key === hash('sha256', $data['username'])) {
     $_SESSION['is_login_user'] = true;
     echo "<script>
      window.location.href = 'dashboard_user.php';
@@ -21,53 +25,72 @@ if(isset($_COOKIE['id']) && isset($_COOKIE['key'])){
   }
 }
 
-if(isset($_POST['submitedFormLogin'])){
+if(isset($_COOKIE['idA']) && isset($_COOKIE['keyA'])) {
+  $id = $_COOKIE['idA'];
+  $key = $_COOKIE['keyA'];
+
+  $sql = "SELECT username FROM user WHERE id='$id'";
+  $result = mysqli_query($db, $sql);
+
+  $data = mysqli_fetch_assoc($result);
+
+  // Cek cookie dan username 
+  if ($key === hash('sha256', $data['username'])) {
+    $_SESSION['is_login_admin'] = true;
+    echo "<script>
+     window.location.href = 'dashboard_admin.php';
+    </script>";
+  }
+}
+
+if (isset($_POST['submitedFormLogin'])) {
   $username = htmlspecialchars($_POST['username']);
   $password = htmlspecialchars($_POST['password']);
-  $hash_password = hash("sha256",$password);
-  
-  if(strlen($username) > 64){
+  $hash_password = hash("sha256", $password);
+
+  if (strlen($username) > 64) {
     $login_message = "Username tidak boleh memiliki panjang lebih dari 64 huruf";
-  }else{
+  } else {
     $sql = "SELECT * FROM user WHERE username='$username' AND password='$hash_password'";
-    $query = mysqli_query($db,$sql);
-    
+    $query = mysqli_query($db, $sql);
+
     // Cek username
-    if(mysqli_num_rows($query) > 0){
+    if (mysqli_num_rows($query) > 0) {
       $data = mysqli_fetch_array($query);
       $user_id = $data['id'];
       $user_name = $data['username'];
       $user_password = $data['password'];
       $user_level = $data['level'];
-      
+
       echo "Password User didatabase adalah: " . $user_password;
       echo "Password User diinput adalah: " . $hash_password;
-      
+
       // Cek Password
-      if($user_password == $hash_password){
+      if ($user_password == $hash_password) {
         echo "Pasword benar";
-        
+
         // Cek Level akun
-        if($user_level == "admin"){
+        if ($user_level == "admin") {
           echo "Level akun adalah : admin";
           $_SESSION['username'] = $user_name;
           $_SESSION['is_login_admin'] = true;
 
-          if($_POST['remember_me'] == "on"){
-            echo $_POST['remember_me'];
-          } 
+          if (isset($_POST['remember_me'])) {
+            setcookie('idA', $user_id, time() + 120);
+            setcookie('keyA', hash('sha256', $user_name), time() + 120);
+          }
 
           echo "<script>
             window.location.href = 'dashboard_admin.php';
           </script>";
-        }else{
+        } else {
           echo "Level akun adalah : user";
           $_SESSION['username'] = $user_name;
           $_SESSION['is_login_user'] = true;
 
-          if(isset($_POST['remember_me'])){
-            setcookie('id',$user_id,time()+120);
-            setcookie('key',hash('sha256',$user_name),time()+120);
+          if (isset($_POST['remember_me'])) {
+            setcookie('id', $user_id, time() + 120);
+            setcookie('key', hash('sha256', $user_name), time() + 120);
           }
 
           echo "<script>
@@ -76,30 +99,30 @@ if(isset($_POST['submitedFormLogin'])){
         }
       }
     }
-    
+
     $error = true;
-    
+
   }
-  
+
 }
 
-if(isset($_POST['forgotPassword'])){
+if (isset($_POST['forgotPassword'])) {
   $username = htmlspecialchars($_POST['username']);
   $password = htmlspecialchars($_POST['password']);
-  
+
   $sql = "SELECT * FROM user WHERE username='$username'";
-  $query = mysqli_query($db,$sql);
-  
-  if(mysqli_num_rows($query) > 0){
-   $data = mysqli_fetch_array($query);
-   $idUsername = $data['id'];
-   $usernameFix = $data['username'];
-   
-   $targetUrl = "forgotPassword.php";
-   $urlWithParam = $targetUrl . "id=" . $idUsername . "&username=" . $usernameFix . "&forgotPassword";
-   
-   echo "<script>window.location.href = 'forgotPassword.php?id=" . $idUsername . "&username=" . $usernameFix . "&forgotPassword" . "';</script>";
-  }else{
+  $query = mysqli_query($db, $sql);
+
+  if (mysqli_num_rows($query) > 0) {
+    $data = mysqli_fetch_array($query);
+    $idUsername = $data['id'];
+    $usernameFix = $data['username'];
+
+    $targetUrl = "forgotPassword.php";
+    $urlWithParam = $targetUrl . "id=" . $idUsername . "&username=" . $usernameFix . "&forgotPassword";
+
+    echo "<script>window.location.href = 'forgotPassword.php?id=" . $idUsername . "&username=" . $usernameFix . "&forgotPassword" . "';</script>";
+  } else {
     $login_message = "Username tidak ada";
   }
 }
@@ -108,6 +131,7 @@ if(isset($_POST['forgotPassword'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,46 +141,50 @@ if(isset($_POST['forgotPassword'])){
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
-  
- <div class="wrapForm">
-   <form action="" method="POST">
-    <h1 class="title">Login member</h1>
-     
-    <p class="message"><?= $login_message; ?></p>
-    
-    <div class="form-group">
-      <input type="text" name="username" placeholder="Username">
-    </div>
-    
-    <div class="form-group">
-      <input type="password" class="password" name="password" placeholder="Password">
-      <div class="wrapEye">
-        <i class="ph ph-eye-slash"></i>
-        <i class="ph ph-eye"></i>
+
+  <div class="wrapForm">
+    <form action="" method="POST">
+      <h1 class="title">Login member</h1>
+
+      <p class="message"><?= $login_message; ?></p>
+
+      <div class="form-group">
+        <input type="text" name="username" placeholder="Username">
       </div>
-    </div>
 
-    <div class="form-cookie">
-      <input type="checkbox" name="remember_me">
-      <label for="">Ingat saya?</label>
-    </div>
-    
-    <div class="wrapHelp">
+      <div class="form-group">
+        <input type="password" class="password" name="password" placeholder="Password">
+        <div class="wrapEye">
+          <i class="ph ph-eye-slash"></i>
+          <i class="ph ph-eye"></i>
+        </div>
+      </div>
 
-      <a href="registrasi.php">Belum memiliki akun?</a>
-      
-      <button type="submit" name="forgotPassword">Lupa Password?</button>
-      
-    </div>
-    
-    <button type="submit" class="submitedFormLogin" name="submitedFormLogin">Login</button>
+      <div class="form-cookie">
+        <input type="checkbox" name="remember_me">
+        <label for="">Ingat saya?</label>
+      </div>
 
-  </form>
- </div>
+      <div class="wrapHelp">
 
-<script src="src/js/login.js" type="text/javascript" charset="utf-8"></script>
+        <a href="registrasi.php">Belum memiliki akun?</a>
+
+        <button type="submit" name="forgotPassword">Lupa Password?</button>
+
+      </div>
+
+      <button type="submit" class="submitedFormLogin" name="submitedFormLogin">Login</button>
+
+    </form>
+  </div>
+
+  <script src="src/js/login.js" type="text/javascript" charset="utf-8"></script>
 </body>
+
 </html>
