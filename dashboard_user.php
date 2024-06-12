@@ -2,7 +2,7 @@
 session_start();
 include("database/config.php");
 
-if( !isset($_SESSION['username']) & !isset($_SESSION['is_login_user']) ){
+if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
   echo "<script>
     window.location.href = 'index.php';
   </script>";
@@ -18,6 +18,9 @@ if( !isset($_SESSION['username']) & !isset($_SESSION['is_login_user']) ){
   <title>Homepage || Catatanku</title>
 </head>
 <body>
+  <form action="logout.php">
+    <button type="submit">Logout</button>
+  </form>
   <h1>Selamat datang diwbesite catatanku</h1>
 </body>
 </html>
