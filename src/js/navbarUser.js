@@ -1,5 +1,5 @@
-const toggleShow = document.querySelector("main .informationDisplay .toggle");
-const toggleHidden = document.querySelector("main .nav-bar .hiddenNavbar");
+const toggleShow = document.querySelector("main .informationDisplay .wrapHeader .toggle");
+const toggleHidden = document.querySelector("main .nav-bar .hiddenNavbar .hidden");
 const navbar = document.querySelector("main .nav-bar");
 
 toggleShow.addEventListener("click", (e) =>{
