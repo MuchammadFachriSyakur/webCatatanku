@@ -14,11 +14,11 @@ body{
 main{
   box-sizing: border-box;
   width: 100%;
-  max-width: 1250px;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
 main .nav-bar{
   box-sizing: border-box;
@@ -28,14 +28,41 @@ main .nav-bar{
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #760000;
   padding: 24px;
+  background-color: white;
 }
 main .nav-bar .hiddenNavbar{
   width: 100%;
   text-align: right;
   font-size: 20px;
-  color: white;
+  color: black;
+}
+main .nav-bar .hiddenNavbar .hidden{
+  box-sizing: border-box;
+  width: 25px;
+  height: 25px;
+}
+main .nav-bar .wrapFolder{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+  list-style-type: none;
+  gap: 18px;
+}
+main .nav-bar .wrapFolder li{
+ box-sizing: border-box;
+ width: 100%;
+ padding: 18px 20px;
+ border-radius: 25px;
+ background-color: red;
+}
+main .nav-bar .wrapFolder li a{
+  text-decoration: none;
+  color: black;
 }
 main .informationDisplay{
   box-sizing: border-box;
@@ -46,7 +73,19 @@ main .informationDisplay{
   justify-content: flex-start;
   align-items: center;
   padding: 24px;
-  background-color: green;
+  background-color: white;
+}
+main .informationDisplay .wrapHeader{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .informationDisplay .wrapHeader .toggle{
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
 }
 @media(min-width: 768px){
   main .nav-bar .hiddenNavbar{
@@ -73,4 +112,4 @@ main .informationDisplay{
   main .informationDisplay{
     width: 100%;
   }
-}
+  }
