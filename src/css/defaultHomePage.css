@@ -18,7 +18,7 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: white; 
 }
 main .nav-bar{
   box-sizing: border-box;
@@ -29,7 +29,7 @@ main .nav-bar{
   justify-content: flex-start;
   align-items: center;
   padding: 24px;
-  background-color: white;
+  background-color: #F5F6F8;
 }
 main .nav-bar .hiddenNavbar{
   width: 100%;
@@ -45,12 +45,14 @@ main .nav-bar .hiddenNavbar .hidden{
 main .nav-bar .wrapFolder{
   box-sizing: border-box;
   width: 100%;
+  height: 75%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 32px;
   list-style-type: none;
+  overflow: auto;
   gap: 18px;
 }
 main .nav-bar .wrapFolder li{
@@ -58,15 +60,53 @@ main .nav-bar .wrapFolder li{
  width: 100%;
  padding: 18px 20px;
  border-radius: 25px;
- background-color: red;
 }
 main .nav-bar .wrapFolder li a{
   text-decoration: none;
   color: black;
+  font-size: 14px;
+}
+main .nav-bar .wrapCreateFolder{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+  margin-top: 20px;
+}
+main .nav-bar .wrapCreateFolder .createdFolder{
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+}
+main .nav-bar .logoutForm{
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 16px;
+}
+main .nav-bar .logoutForm button{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 30px;
+  background-color: transparent;
+  border: 2px solid #14B8A6;
+  color: #14B8A6;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+main .nav-bar .logoutForm button:hover{
+  background-color: #14B8A6;
+  color: white;
 }
 main .informationDisplay{
   box-sizing: border-box;
   width: 70%;
+  max-width: 1650px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -79,19 +119,64 @@ main .informationDisplay .wrapHeader{
   box-sizing: border-box;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
-main .informationDisplay .wrapHeader .toggle{
+main .informationDisplay .wrapHeader .wrap1{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .informationDisplay .wrapHeader .wrap1 .toggle{
   box-sizing: border-box;
   width: 30px;
   height: 30px;
+}
+main .informationDisplay .wrapHeader .searchData{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  background-color: #f5f6f8;
+  border: 2px solid #DEDEDE;
+  border-radius: 4px;
+  padding: 8px;
+  gap: 4px;
+}
+main .informationDisplay .wrapHeader .searchData:hover{
+  box-shadow: 0 0 0 2px #404852;
+}
+main .informationDisplay .wrapHeader .searchData input[type=search]{
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+main .informationDisplay .wrapHeader .searchData button{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+main .informationDisplay .wrapHeader .searchData button img{
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
 }
 @media(min-width: 768px){
   main .nav-bar .hiddenNavbar{
     display: none;
   }
-  main .informationDisplay .toggle{
+  main .informationDisplay .wrapHeader .wrap1 .toggle{
     display: none;
   }
 }
@@ -112,4 +197,4 @@ main .informationDisplay .wrapHeader .toggle{
   main .informationDisplay{
     width: 100%;
   }
-  }
+}
