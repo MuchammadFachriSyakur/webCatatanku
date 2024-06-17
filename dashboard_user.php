@@ -66,6 +66,18 @@ if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
     
   </main>
 
+  <section class="wrapAlertFormAdd">
+    <form class="formCreateFolder" method="get">
+      <span class="deleteAlertFolder">
+        <img class="delete" src="img/asset/close.png" alt="deleteAlertFolder" />
+      </span>
+      <input type="text" name="nameFolder" placeholder="Nama folder...">
+      <textarea name="DeskripsiFolder" placeholder="Deskripsi folder..." class="DeskripsiFolder"></textarea>
+      <button type="submit" class="btn_create">Create</button>
+    </form>
+  </section>
+
 <script src="src/js/navbarUser.js" type="text/javascript" charset="utf-8"></script>
+<script src="src/js/homePage.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
