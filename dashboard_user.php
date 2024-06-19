@@ -1,12 +1,26 @@
 <?php 
 session_start();
 include("database/config.php");
+$username = $_SESSION['username'];
 
 if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
   echo "<script>
     window.location.href = 'index.php';
   </script>";
   exit;
+}
+
+if(isset($_GET['createFolder'])){
+  $nameFolder = htmlspecialchars($_GET['nameFolder']);
+  $sql = "INSERT INTO folder (username,name) VALUES ('$username','$nameFolder')";
+  $query = mysqli_query($db,$sql);
+  
+  if($query){
+    echo "<script>
+      alert('Data berhasil ditambahkan');
+      window.location.href = 'dashboard_user.php';
+    </script>";
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -26,22 +40,22 @@ if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
       </p>
       
       <div class="wrapCreateFolder">
-        <p><?= $_SESSION['username']; ?></p>
+        <p>Username</p>
         <img src="img/asset/add.png" alt="Created Folder" class="createdFolder">
       </div>
       
       <ul class="wrapFolder">
-        <li><a href="#">IPA</a></li>
-        <li><a href="#">IPS</a></li>
-        <li><a href="#">MTK</a></li>
-        <li><a href="#">B.INDONESIA</a></li>
-        <li><a href="#">B.INDONESIA</a></li>
-        <li><a href="#">B.INDONESIA</a></li>
-        <li><a href="#">B.INDONESIA</a></li>
-        <li><a href="#">B.INDONESIA</a></li>
-        <li><a href="#">B.INDONESIA</a></li>
-        <li><a href="#">B.INDONESIA</a></li>
-        <li><a href="#">B.INDONESIA</a></li>
+        <?php 
+        $sqlFolder = "SELECT * FROM folder WHERE username='$username'";
+        $queryFolder = mysqli_query($db,$sqlFolder);
+        while($data = mysqli_fetch_array($queryFolder)):
+        ?>
+        <li>
+          <a href="#"><?= $data['name']; ?></a>
+        </li>
+        <?php
+        endwhile;
+        ?>
       </ul>
       
       <form action="logout.php" method="GET" class="logoutForm">
@@ -65,15 +79,15 @@ if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
     </section>
     
   </main>
-
+  
   <section class="wrapAlertFormAdd">
-    <form class="formCreateFolder" method="get">
+    <form class="formCreateFolder" method="GET">
       <span class="deleteAlertFolder">
         <img class="delete" src="img/asset/close.png" alt="deleteAlertFolder" />
       </span>
-      <input type="text" name="nameFolder" placeholder="Nama folder...">
-      <textarea name="DeskripsiFolder" placeholder="Deskripsi folder..." class="DeskripsiFolder"></textarea>
-      <button type="submit" class="btn_create">Create</button>
+      <h1>Formulir create folder</h1>
+      <input type="text" name="nameFolder" placeholder="Nama folder..." required>
+      <button type="submit" name="createFolder" class="btn_create">Create</button>
     </form>
   </section>
 
