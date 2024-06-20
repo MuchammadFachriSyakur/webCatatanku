@@ -51,7 +51,13 @@ if(isset($_GET['createFolder'])){
         while($data = mysqli_fetch_array($queryFolder)):
         ?>
         <li>
-          <a href="#"><?= $data['name']; ?></a>
+          <form method="POST">
+            <input type="text" name="idFolder" value="<?= $data['id']; ?>">
+            <input type="text" name="usernameFolder" value="<?= $data['username']; ?>">
+            <input type="text" name="nameFolder" value="<?= $data['name']; ?>">
+            <button type="submit" name="editFolder" formaction="proses_edit_folder.php">Edit</button>
+            <button type="submit" name="hapusFolder" formaction="proses_hapus_folder.php">Hapus</button>
+          </form>
         </li>
         <?php
         endwhile;
