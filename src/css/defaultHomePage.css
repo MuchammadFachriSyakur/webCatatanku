@@ -2,6 +2,100 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.wrapAlertFormAdd{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0,0,0,0.3);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  z-index: 200;
+}
+.wrapAlertFormAdd.show{
+  display: flex;
+}
+.wrapAlertFormAdd .formCreateFolder{
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 500px;
+  padding: 32px 36px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 0 3px rgb(0,0,0,0.25);
+}
+.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder .delete{
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+}
+.wrapAlertFormAdd .formCreateFolder input{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 10px;
+  margin-top: 44px;
+  margin-bottom: 12px;
+  border: 1px solid #a9a9a9;
+  border-radius: 5px;
+  outline: none;
+}
+.wrapAlertFormAdd .formCreateFolder #publish{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #a9a9a9;
+  border-radius: 5px;
+  outline: none;
+}
+.wrapAlertFormAdd .formCreateFolder .DeskripsiFolder{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 12px 10px;
+  border: 1px solid #a9a9a9;
+  border-radius: 5px;
+  outline: none;
+}
+.wrapAlertFormAdd .formCreateFolder .btn_create{
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #228B22;
+  color: white;
+  padding: 12px 16px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+.wrapAlertFormAdd .formCreateFolder .btn_create:hover{
+  border: 2px solid #228B22;
+  background-color: white;
+  color: #228B22;
 }
 body{
   box-sizing: border-box;
@@ -61,10 +155,43 @@ main .nav-bar .wrapFolder li{
  padding: 18px 20px;
  border-radius: 25px;
 }
-main .nav-bar .wrapFolder li a{
-  text-decoration: none;
-  color: black;
-  font-size: 14px;
+main .nav-bar .wrapFolder li form{
+  box-sizing: border-box; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+main .nav-bar .wrapFolder li form .hidden{
+  display: none;
+}
+main .nav-bar .wrapFolder li form .nameFolder{
+  box-sizing: border-box;
+  width: 70%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+main .nav-bar .wrapFolder li form .wrapAction{
+  box-sizing: border-box;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+main .nav-bar .wrapFolder li form .wrapAction button{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  padding: 8px;
+}
+main .nav-bar .wrapFolder li form .wrapAction .editFolder{
+  
 }
 main .nav-bar .wrapCreateFolder{
   box-sizing: border-box;
@@ -76,6 +203,12 @@ main .nav-bar .wrapCreateFolder{
   gap: 4px;
   padding: 8px 0;
   margin-top: 20px;
+}
+main .nav-bar .wrapCreateFolder .username{
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
 }
 main .nav-bar .wrapCreateFolder .createdFolder{
   box-sizing: border-box;
@@ -197,4 +330,4 @@ main .informationDisplay .wrapHeader .searchData button img{
   main .informationDisplay{
     width: 100%;
   }
-}
+  }
