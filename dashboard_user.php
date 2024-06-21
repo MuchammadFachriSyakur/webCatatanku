@@ -22,15 +22,18 @@ if(isset($_GET['createFolder'])){
     </script>";
   }
 }
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Welcome to mynotes</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" href="src/css/defaultHomePage.css" type="text/css" media="all" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
   <main>
@@ -40,7 +43,7 @@ if(isset($_GET['createFolder'])){
       </p>
       
       <div class="wrapCreateFolder">
-        <p>Username</p>
+        <p class="username"><?= $username;  ?></p>
         <img src="img/asset/add.png" alt="Created Folder" class="createdFolder">
       </div>
       
@@ -52,11 +55,13 @@ if(isset($_GET['createFolder'])){
         ?>
         <li>
           <form method="POST">
-            <input type="text" name="idFolder" value="<?= $data['id']; ?>">
-            <input type="text" name="usernameFolder" value="<?= $data['username']; ?>">
-            <input type="text" name="nameFolder" value="<?= $data['name']; ?>">
-            <button type="submit" name="editFolder" formaction="proses_edit_folder.php">Edit</button>
-            <button type="submit" name="hapusFolder" formaction="proses_hapus_folder.php">Hapus</button>
+            <input type="text" class="hidden" name="idFolder" value="<?= $data['id']; ?>" readonly>
+            <input type="text" class="hidden" name="usernameFolder" value="<?= $data['username']; ?>" readonly>
+            <input type="text" class="nameFolder" name="nameFolder" value="<?= $data['name']; ?>" readonly>
+            <div class="wrapAction">
+              <button type="submit" class="editFolder" name="editFolder" formaction="proses_edit_folder.php"><i class="ph ph-pencil"></i></button>
+              <button type="submit" class="hapusFolder" name="hapusFolder" formaction="proses_hapus_folder.php"><i class="ph ph-trash"></i></button>
+            </div>
           </form>
         </li>
         <?php
