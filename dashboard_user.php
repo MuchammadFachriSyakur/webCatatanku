@@ -22,7 +22,8 @@ if(isset($_GET['createFolder'])){
     </script>";
   }
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -57,7 +58,8 @@ if(isset($_GET['createFolder'])){
           <form method="POST">
             <input type="text" class="hidden" name="idFolder" value="<?= $data['id']; ?>" readonly>
             <input type="text" class="hidden" name="usernameFolder" value="<?= $data['username']; ?>" readonly>
-            <input type="text" class="nameFolder" name="nameFolder" value="<?= $data['name']; ?>" readonly>
+            <input type="text" class="hidden" name="nameFolder" value="<?= $data['name']; ?>" readonly>
+            <button type="submit" name="detailFolder" class="nameFolder" formaction="detail_folder.php"><?= $data['name']; ?></button>
             <div class="wrapAction">
               <button type="submit" class="editFolder" name="editFolder" formaction="proses_edit_folder.php"><i class="ph ph-pencil"></i></button>
               <button type="submit" class="hapusFolder" name="hapusFolder" formaction="proses_hapus_folder.php"><i class="ph ph-trash"></i></button>
