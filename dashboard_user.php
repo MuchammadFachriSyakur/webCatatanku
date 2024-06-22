@@ -104,5 +104,6 @@ if(isset($_GET['createFolder'])){
 
 <script src="src/js/navbarUser.js" type="text/javascript" charset="utf-8"></script>
 <script src="src/js/homePage.js" type="text/javascript" charset="utf-8"></script>
+<script src="src/js/confirmHapusFolder.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
