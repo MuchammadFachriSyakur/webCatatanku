@@ -153,10 +153,9 @@ main .nav-bar .wrapFolder li{
  box-sizing: border-box;
  width: 100%;
  padding: 18px 20px;
- border-radius: 25px;
 }
-main .nav-bar .wrapFolder .folderInvalid{
-  background-color: red;
+main .nav-bar .wrapFolder .FolderValid{
+  background-color: #DEDEDE;
 }
 main .nav-bar .wrapFolder li form{
   box-sizing: border-box; 
@@ -256,6 +255,7 @@ main .informationDisplay .wrapHeader{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 24px;
 }
 main .informationDisplay .wrapHeader .wrap1{
   box-sizing: border-box;
