@@ -2,11 +2,11 @@
 session_start();
 include ("database/config.php");
 $login_message = "";
-
+            
 if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
   $id = $_COOKIE['id'];
   $key = $_COOKIE['key'];
-
+ 
   $sql = "SELECT username FROM user WHERE id='$id'";
   $result = mysqli_query($db, $sql);
 
@@ -19,6 +19,7 @@ if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
   // Cek cookie dan username 
   if ($key === hash('sha256', $data['username'])) {
     $_SESSION['is_login_user'] = true;
+    $_SESSION['username'] = $data['username'];
     echo "<script>
      window.location.href = 'dashboard_user.php';
     </script>";
@@ -72,7 +73,7 @@ if (isset($_POST['submitedFormLogin'])) {
         // Cek Level akun
         if ($user_level == "admin") {
           echo "Level akun adalah : admin";
-          $_SESSION['username'] = $user_name;
+          $_SESSION['usernameAdmin'] = $user_name;
           $_SESSION['is_login_admin'] = true;
 
           if (isset($_POST['remember_me'])) {
