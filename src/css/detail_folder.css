@@ -377,6 +377,17 @@ main .informationDisplay .wrapNote .notes button .description{
   font-weight: 400;
   text-align: left;
 }
+main .informationDisplay .wrapNote .notes button .date{
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+}
 main .informationDisplay .wrapNote .notes input{
   border: none;
   outline: none;
