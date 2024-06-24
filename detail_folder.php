@@ -146,10 +146,12 @@ if(isset($_GET['createFolder'])){
         while($data = mysqli_fetch_array($query)):
         ?>
          <?php if($namaFolder == $data['NameFolder']): ?>
-          <p>Judul :
-          <?= $data['titleNotes']; ?></p>
-          <p>Deskripsi :
-          <?= $data['descriptionNotes']; ?></p>
+          <div class="notes">
+            <p>Judul :
+             <?= $data['titleNotes']; ?></p>
+            <p>Deskripsi :
+             <?= $data['descriptionNotes']; ?></p>
+          </div>
          <?php endif; ?>
         <?php endwhile; ?>
       </div>
