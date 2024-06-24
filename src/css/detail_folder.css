@@ -343,9 +343,20 @@ main .informationDisplay .wrapNote .notes{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+main .informationDisplay .wrapNote .notes button{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
   gap: 8px;
 }
-main .informationDisplay .wrapNote .notes .title{
+main .informationDisplay .wrapNote .notes button .title{
   box-sizing: border-box;
   width: 100%;
   white-space: nowrap;
@@ -353,8 +364,9 @@ main .informationDisplay .wrapNote .notes .title{
   text-overflow: ellipsis;
   font-size: 16px;
   font-weight: 500;
+  text-align: left;
 }
-main .informationDisplay .wrapNote .notes .description{
+main .informationDisplay .wrapNote .notes button .description{
   box-sizing: border-box;
   width: 100%;
   max-height: 50px;
@@ -363,6 +375,7 @@ main .informationDisplay .wrapNote .notes .description{
   text-overflow: ellipsis;
   font-size: 14px;
   font-weight: 400;
+  text-align: left;
 }
 main .informationDisplay .wrapNote .notes input{
   border: none;
@@ -397,4 +410,4 @@ main .informationDisplay .wrapNote .notes .hidden{
   main .informationDisplay{
     width: 100%;
   }
-  }
+}
