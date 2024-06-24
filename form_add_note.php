@@ -18,19 +18,16 @@ if(isset($_POST['addNote'])){
   $usernameToAddFolder = htmlspecialchars($_POST['usernameToAddFolder']);
 }
 
-//if($idFolder == 0 & $nameFolder == "" & $usernameToAddFolder == ""){
-//  echo "<script>
-//    window.location.href = 'index.php';
-//  </script>";
-//  exit;
-//}
-
 if(isset($_POST['tambahCatatan'])){
   $titleNotes = htmlspecialchars($_POST['titleNotes']);
   $descriptionNotes = htmlspecialchars($_POST['descriptionNotes']);
   $publish = htmlspecialchars($_POST['publish']);
+  $namaFolder = htmlspecialchars($_POST['nameFolder']);
+  $idfolder = $_POST['idFolder'];
+  $usernamefolder = htmlspecialchars($_POST['username']);
+  
    
-  $sql = "INSERT INTO notes (titleNotes,descriptionNotes,publish,idFolder,usernameFolder,NameFolder) VALUES ('$titleNotes','$descriptionNotes','$publish','$idFolder','$usernameToAddFolder','$nameFolder')";
+  $sql = "INSERT INTO notes (titleNotes,descriptionNotes,publish,idFolder,usernameFolder,NameFolder) VALUES ('$titleNotes','$descriptionNotes','$publish','$idfolder','$usernamefolder','$namaFolder')";
   $query = mysqli_query($db,$sql);
   
   if($query){
@@ -45,6 +42,13 @@ if(isset($_POST['tambahCatatan'])){
   echo "<script>
     window.location.href = 'dashboard_user.php';
   </script>";
+}
+
+if($idFolder == 0 & $nameFolder == "" & $usernameToAddFolder == ""){
+  echo "<script>
+    window.location.href = 'index.php';
+  </script>";
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -69,7 +73,7 @@ if(isset($_POST['tambahCatatan'])){
       <option value="Private">Private</option>
       <option value="Publis">Publis</option>
     </select>
-    <button type="submit" formaction="" name="tambahCatatan">Tambah</button>
+    <button type="submit" name="tambahCatatan">Tambah</button>
   </form>
 </body>
 </html>
