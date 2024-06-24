@@ -157,6 +157,7 @@ if(isset($_GET['createFolder'])){
             <button type="submit" name="detailNotes">
               <p class="title"><?= $data['titleNotes']; ?></p>
               <p class="description"><?= $data['descriptionNotes']; ?></p>
+              <p class="date"><?= $data['created_at']; ?></p>
             </button>
           </form>
          <?php endif; ?>
