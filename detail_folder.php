@@ -35,7 +35,7 @@ if(isset($_GET['createFolder'])){
   if($query){
     echo "<script>
       alert('Data berhasil ditambahkan');
-      window.location.href = 'dashboard_user.php';
+      window.location.href = 'detail_folder.php';
     </script>";
   }
 }
@@ -48,7 +48,7 @@ if(isset($_GET['createFolder'])){
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Welcome to mynotes</title>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <link rel="stylesheet" href="src/css/defaultHomePage.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="src/css/detail_folder.css" type="text/css" media="all" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -133,13 +133,25 @@ if(isset($_GET['createFolder'])){
           </button>
         </form>
       </div>
-      <div class="wrapNote">
-        <form method="POST">
-          <input type="text" name="idFolder" value="<?= $idFolderValid; ?>" >
-          <input type="text" name="namesFolder" value="<?= $namaFolder; ?>" />
-          <input type="text" name="usernameToAddFolder" value="<?= $usernameFolder; ?>">
+      <form class="addNote" method="POST">
+          <input type="text" class="hidden" name="idFolder" value="<?= $idFolderValid; ?>" >
+          <input type="text" class="hidden" name="namesFolder" value="<?= $namaFolder; ?>" />
+          <input type="text" class="hidden" name="usernameToAddFolder" value="<?= $usernameFolder; ?>">
           <button type="submit" name="addNote" formaction="form_add_note.php">Tambah Catatan</button>
         </form>
+      <div class="wrapNote">
+        <?php
+        $sql = "SELECT * FROM notes WHERE usernameFolder='$username'";
+        $query = mysqli_query($db,$sql);
+        while($data = mysqli_fetch_array($query)):
+        ?>
+         <?php if($namaFolder == $data['NameFolder']): ?>
+          <p>Judul :
+          <?= $data['titleNotes']; ?></p>
+          <p>Deskripsi :
+          <?= $data['descriptionNotes']; ?></p>
+         <?php endif; ?>
+        <?php endwhile; ?>
       </div>
     </section>
     
