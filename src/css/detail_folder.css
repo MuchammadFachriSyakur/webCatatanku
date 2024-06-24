@@ -306,14 +306,14 @@ main .informationDisplay .wrapHeader .searchData button img{
   width: 20px;
   height: 20px;
 }
-main .informationDisplay .wrapNote{
+main .informationDisplay .addNote{
   box-sizing: border-box;
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 32px;
 }
 main .informationDisplay .addNote .hidden{
   box-sizing: border-box;
@@ -322,6 +322,23 @@ main .informationDisplay .addNote .hidden{
 main .informationDisplay .addNote button{
   box-sizing: border-box;
   padding: 6px 8px;
+}
+main .informationDisplay .wrapNote{
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+main .informationDisplay .wrapNote .notes{
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid black;
+  padding: 12px;
+  border-radius: 8px;
 }
 @media(min-width: 768px){
   main .nav-bar .hiddenNavbar{
