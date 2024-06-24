@@ -1,0 +1,42 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.form_add_notes{
+  box-sizing: border-box;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form_add_notes .title{
+  margin-bottom: 32px;
+}
+.form_add_notes input,.form_add_notes select{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 6px;
+  margin-bottom: 8px;
+}
+.form_add_notes .hidden{
+  display: none;
+}
+.form_add_notes button{
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 8px;
+}
