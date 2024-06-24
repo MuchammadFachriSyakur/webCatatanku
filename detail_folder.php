@@ -148,12 +148,16 @@ if(isset($_GET['createFolder'])){
          <?php if($namaFolder == $data['NameFolder']): ?>
           <form action="" class="notes">
             <input type="text" class="hidden" name="id" value="<?= $data['id']; ?>">
-            <input type="text" class="title" name="titleNotes" value="<?= $data['titleNotes']; ?>" readonly>
-            <input type="text" class="description" name="descriptionNotes" value="<?= $data['descriptionNotes']; ?>" readonly>
+            <input type="text" class="hidden" name="titleNotes" value="<?= $data['titleNotes']; ?>" readonly>
+            <input type="text" class="hidden" name="descriptionNotes" value="<?= $data['descriptionNotes']; ?>" readonly>
             <input type="text" class="hidden" name="publish" value="<?= $data['publish']; ?>" readonly>
             <input type="text" class="hidden" name="idFolder" value="<?= $data['idFolder']; ?>">
             <input type="text" class="hidden" name="usernameFolder" value="<?= $data['usernameFolder']; ?>">
             <input type="text" class="hidden" name="NameFolder" value="<?= $data['NameFolder']; ?>">
+            <button type="submit" name="detailNotes">
+              <p class="title"><?= $data['titleNotes']; ?></p>
+              <p class="description"><?= $data['descriptionNotes']; ?></p>
+            </button>
           </form>
          <?php endif; ?>
         <?php endwhile; ?>
