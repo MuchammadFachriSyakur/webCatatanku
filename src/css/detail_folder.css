@@ -337,8 +337,40 @@ main .informationDisplay .wrapNote .notes{
   width: 100%;
   max-width: 400px;
   border: 1px solid black;
-  padding: 12px;
+  padding: 16px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+main .informationDisplay .wrapNote .notes .title{
+  box-sizing: border-box;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  font-weight: 500;
+}
+main .informationDisplay .wrapNote .notes .description{
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 400;
+}
+main .informationDisplay .wrapNote .notes input{
+  border: none;
+  outline: none;
+}
+main .informationDisplay .wrapNote .notes .hidden{
+  box-sizing: border-box;
+  display: none;
 }
 @media(min-width: 768px){
   main .nav-bar .hiddenNavbar{
@@ -365,4 +397,4 @@ main .informationDisplay .wrapNote .notes{
   main .informationDisplay{
     width: 100%;
   }
-}
+  }
