@@ -164,6 +164,8 @@ if(isset($_GET['createFolder'])){
 
             <input type="text" class="hidden" name="created_at" value="<?= $data['created_at']; ?>">
 
+            <input type="text" class="hidden" name="image" value="<?= $data['image']; ?>">
+
             <button type="submit" name="detailNotes">
               <p class="title"><?= $data['titleNotes']; ?></p>
               <p class="description"><?= $data['descriptionNotes']; ?></p>
