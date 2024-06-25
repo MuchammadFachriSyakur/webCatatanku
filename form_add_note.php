@@ -5,12 +5,12 @@ $idFolder = 0;
 $nameFolder = "";
 $usernameToAddFolder = "";
 
-//if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
- // echo "<script>
-   // window.location.href = 'index.php';
-//  </script>";
- // exit;
-//}
+if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
+  echo "<script>
+    window.location.href = 'index.php';
+  </script>";
+  exit;
+}
 
 if(isset($_POST['addNote'])){
   $idFolder = $_POST['idFolder'];
@@ -51,6 +51,7 @@ if(isset($_POST['tambahCatatan'])){
   if(!in_array($ektensiGambar,$ektensiGambarValid)){
     echo "<script>
       alert('Silahkan upload file yang memiliki ekstensi jpeg,jpg dan png');
+      window.location.href = 'dashboard_user.php';
     </script>";
     exit;
   }
@@ -60,13 +61,13 @@ if(isset($_POST['tambahCatatan'])){
     echo "<script>
       alert('Ukuran gambar telalu besar');
     </script>";
+    exit;
   }
 
   //Mmebuat nama baru 
   $newNameFile = uniqid();
   $newNameFile .= '.';
   $newNameFile .= $ektensiGambar;
-  var_dump($newNameFile);
 
   //lolos pengecekan 
   move_uploaded_file($tmpNameFile, 'img/' . $newNameFile);
@@ -88,12 +89,12 @@ if(isset($_POST['tambahCatatan'])){
   </script>";
 }
 
-//if($idFolder == 0 & $nameFolder == "" & $usernameToAddFolder == ""){
- // echo "<script>
- //   window.location.href = 'index.php';
- // </script>";
- // exit;
-//}
+if($idFolder == 0 & $nameFolder == "" & $usernameToAddFolder == ""){
+  echo "<script>
+    window.location.href = 'index.php';
+  </script>";
+  exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

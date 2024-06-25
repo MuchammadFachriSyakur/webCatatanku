@@ -13,14 +13,16 @@ if(isset($_POST['detailNotes'])){
   $NameFolder = htmlspecialchars($_POST['NameFolder']);
   $created_at = htmlspecialchars($_POST['created_at']);
   $image = htmlspecialchars($_POST['image']);
+  $view = $_POST['view'];
+  $intView = (int)$view;
+  $plusOne = $intView + 1;
+
+  $sql = "UPDATE notes SET view='$plusOne' WHERE id='$id'";
+  $query = mysqli_query($db,$sql);
 }else{
     echo "<script>
     window.location.href = 'dashboard_user.php';
   </script>";
-}
-
-if(!isset($_SESSION['username'])){
-    echo "Username tidak ada";
 }
 ?>
 <!DOCTYPE html>
@@ -46,26 +48,8 @@ if(!isset($_SESSION['username'])){
       <p class="usernameFolder">Dibuat oleh: <?= $usernameFolder; ?></p>
 
       <p class="date">Tanggal: <?= $created_at; ?></p>
-
-      <?php if($usernameFolder == $_SESSION['username']): ?>
-        <input type="text" class="hidden" name="id" value="<?= $id; ?>" readonly>
-
-        <input type="text" class="hidden" name="titleNotes" value="<?= $titleNotes; ?>" readonly>
-
-        <input type="text" class="hidden" name="descriptionNotes" value="<?= $descriptionNotes; ?>" readonly>
-
-        <input type="text" class="hidden" name="publish" value="<?= $publish; ?>" readonly>
-
-        <input type="text" class="hidden" name="idFolder" value="<?= $idFolder; ?>">
-
-        <input type="text" class="hidden" name="usernameFolder" value="<?= $usernameFolder; ?>">
-
-        <input type="text" class="hidden" name="NameFolder" value="<?= $NameFolder; ?>">
-
-        <input type="text" class="hidden" name="image" value="<?= $image; ?>">
-
-        <button type="submit" name="hapusNote">Hapus</button>
-      <?php endif; ?>
+      
+      <p class="date">View: <?= $plusOne; ?></p>
     </form>
 
 <script src="src/js/imageNote.js"></script>

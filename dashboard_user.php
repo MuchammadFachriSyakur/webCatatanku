@@ -89,6 +89,45 @@ if(isset($_GET['createFolder'])){
           </button>
         </form>
       </div>
+      <div class="wrapNotesPublish">
+        <?php 
+        $sqlNotes = "SELECT * FROM notes";
+        $queryNotes = mysqli_query($db,$sqlNotes);
+        while($data = mysqli_fetch_array($queryNotes)):
+        $publish = $data['publish'];
+        ?>
+          <?php if($publish == "Publis"): ?>
+           <form action="detail_note_public.php" method="POST" class="notes">
+
+            <input type="text" class="hidden" name="id" value="<?= $data['id']; ?>">
+
+            <input type="text" class="hidden" name="titleNotes" value="<?= $data['titleNotes']; ?>" readonly>
+
+            <input type="text" class="hidden" name="descriptionNotes" value="<?= $data['descriptionNotes']; ?>" readonly>
+
+            <input type="text" class="hidden" name="publish" value="<?= $data['publish']; ?>" readonly>
+
+            <input type="text" class="hidden" name="idFolder" value="<?= $data['idFolder']; ?>">
+
+            <input type="text" class="hidden" name="usernameFolder" value="<?= $data['usernameFolder']; ?>">
+
+            <input type="text" class="hidden" name="NameFolder" value="<?= $data['NameFolder']; ?>">
+
+            <input type="text" class="hidden" name="created_at" value="<?= $data['created_at']; ?>">
+
+            <input type="text" class="hidden" name="image" value="<?= $data['image']; ?>">
+
+            <input type="text" class="hidden" name="view" value="<?= $data['view']; ?>">
+
+            <button type="submit" name="detailNotes">
+              <p class="title"><?= $data['titleNotes']; ?></p>
+              <p class="description"><?= $data['descriptionNotes']; ?></p>
+              <p class="date"><?= $data['created_at']; ?></p>
+            </button>
+           </form>
+          <?php endif; ?>
+        <?php endwhile; ?>
+      </div>
     </section>
     
   </main>

@@ -145,7 +145,7 @@ if(isset($_GET['createFolder'])){
         $query = mysqli_query($db,$sql);
         while($data = mysqli_fetch_array($query)):
         ?>
-         <?php if($namaFolder == $data['NameFolder']): ?>
+         <?php if($idFolder == $data['idFolder']): ?>
           <form action="detail_note.php" method="POST" class="notes">
 
             <input type="text" class="hidden" name="id" value="<?= $data['id']; ?>">
