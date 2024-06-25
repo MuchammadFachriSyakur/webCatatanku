@@ -38,7 +38,7 @@ if(!isset($_SESSION['username'])){
     <div class="background-notes" data-background='img/<?= $image; ?>'>
      <p class="titleNotes"><?= $titleNotes; ?></p>
     </div>
-    <form action="proses_hapus_note.php" method="POST">
+    <form method="POST">
       <a href="dashboard_user.php">Kembali</a>
 
       <p class="descriptionNotes"><?= $descriptionNotes; ?></p>
@@ -64,10 +64,11 @@ if(!isset($_SESSION['username'])){
 
         <input type="text" class="hidden" name="image" value="<?= $image; ?>">
 
-        <button type="submit" name="hapusNote">Hapus</button>
+        <button type="submit" formaction="proses_hapus_note.php" name="hapusNote">Hapus</button>
       <?php endif; ?>
     </form>
 
 <script src="src/js/imageNote.js"></script>
+<script src="src/js/confirmHapusNote.js"></script>
 </body>
 </html>
