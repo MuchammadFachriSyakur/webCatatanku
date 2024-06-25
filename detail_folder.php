@@ -146,14 +146,24 @@ if(isset($_GET['createFolder'])){
         while($data = mysqli_fetch_array($query)):
         ?>
          <?php if($namaFolder == $data['NameFolder']): ?>
-          <form action="" class="notes">
+          <form action="detail_note.php" method="POST" class="notes">
+
             <input type="text" class="hidden" name="id" value="<?= $data['id']; ?>">
+
             <input type="text" class="hidden" name="titleNotes" value="<?= $data['titleNotes']; ?>" readonly>
+
             <input type="text" class="hidden" name="descriptionNotes" value="<?= $data['descriptionNotes']; ?>" readonly>
+
             <input type="text" class="hidden" name="publish" value="<?= $data['publish']; ?>" readonly>
+
             <input type="text" class="hidden" name="idFolder" value="<?= $data['idFolder']; ?>">
+
             <input type="text" class="hidden" name="usernameFolder" value="<?= $data['usernameFolder']; ?>">
+
             <input type="text" class="hidden" name="NameFolder" value="<?= $data['NameFolder']; ?>">
+
+            <input type="text" class="hidden" name="created_at" value="<?= $data['created_at']; ?>">
+
             <button type="submit" name="detailNotes">
               <p class="title"><?= $data['titleNotes']; ?></p>
               <p class="description"><?= $data['descriptionNotes']; ?></p>
