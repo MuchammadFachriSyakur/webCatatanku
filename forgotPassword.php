@@ -42,6 +42,17 @@ if(isset($_GET['forgotPassword'])){
   }
 }
 
+$cekSending = '';
+$userSending = '';
+if(isset($_GET['sending'])){
+  $sending = $_GET['sending'];
+  $userSending = $_GET['username'];
+
+  if($sending == 'benar'){
+    $cekSending = "iya";
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -54,15 +65,25 @@ if(isset($_GET['forgotPassword'])){
 </head>
 <body>
   
-  <form action="proses_send_code-verification.php" method="POST">
-    <input type="text" name="kodeVerifikasiEmail" value="<?= $messageCode; ?>">
+  <form method="POST">
+    <input type="text" name="kodeVerifikasiEmail" value="<?= $kodeVerifikasiEmail; ?>">
 
     <input type="text" name="username" value="<?= $username; ?>">
 
     <input type="text" name="emailUser" value="<?= $emailUser; ?>">
 
-    <button type="submit" name="sendCode">Kirim kode</button>
+    <button type="submit" name="sendCode" formaction="proses_send_code-verification.php">Kirim kode</button>
   </form>
+
+  <br><br><br>
+  
+  <?php if($cekSending == 'iya'): ?>
+  <form method="GET">
+    <input type="text" name="username" value="<?= $userSending; ?>">
+    <input type="number" name="kode" placeholder="Masukan kode verifikasi">
+    <button type="submit" name="verification_code" formaction="verification_code.php">verifikasi code</button>
+  </form>
+  <?php endif; ?>
   
 </body>
 </html>
