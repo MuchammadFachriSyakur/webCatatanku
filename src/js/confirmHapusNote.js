@@ -1,4 +1,4 @@
-const btn_delete = document.querySelector("form button");
+const btn_delete = document.querySelector("form .hapus");
 
 btn_delete.addEventListener("click", (e)=>{
    const konfirmasi = confirm("Apakah anda ingin menghapus folder");
