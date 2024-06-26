@@ -63,8 +63,12 @@ if(!isset($_SESSION['username'])){
         <input type="text" class="hidden" name="NameFolder" value="<?= $NameFolder; ?>">
 
         <input type="text" class="hidden" name="image" value="<?= $image; ?>">
+        
+        <input type="text" class="hidden" name="created_at" value="<?= $created_at; ?>">
 
-        <button type="submit" formaction="proses_hapus_note.php" name="hapusNote">Hapus</button>
+        <button type="submit" formaction="form_edit_note.php" name="editNote">Edit</button>
+
+        <button type="submit" formaction="proses_hapus_note.php" name="hapusNote" class="hapus">Hapus</button>
       <?php endif; ?>
     </form>
 
