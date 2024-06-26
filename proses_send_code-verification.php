@@ -17,7 +17,7 @@ if(isset($_POST['sendCode'])){
     $username = htmlspecialchars($_POST['username']);
     $emailUser = htmlspecialchars($_POST['emailUser']);
 
-    $sql = "UPDATE user SET kode_verifikasi='$$messageCode' WHERE username='$username'";
+    $sql = "UPDATE user SET kode_verifikasi='$messageCode' WHERE username='$username'";
     $query = mysqli_query($db,$sql);
     if($query){
       $mail = new PHPMailer;
@@ -41,12 +41,16 @@ if(isset($_POST['sendCode'])){
       $send = $mail->send();
       
       if($send){
-        echo "<script>
+        $sendFile = "<script>
         alert('Kode verifikasi berhasil dikirimkan');
-      </script>";
+        window.location.href = 'forgotPassword.php?sending=benar&username=" . $username . "';
+        </script>";
+
+        echo $sendFile;
       }else{
         echo "<script>
         alert('Kode verifikasi gagal dikirimkan');
+        window.location.href = 'forgotPassword.php?sending=salah';
       </script>";
       }
     }else{
