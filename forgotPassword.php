@@ -1,4 +1,11 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
 include("database/config.php");
 
 function generatiCodeVerifikasi($length){
@@ -10,11 +17,13 @@ function generatiCodeVerifikasi($length){
 }
 
 $kodeVerifikasiEmail = generatiCodeVerifikasi(6);
-echo "Your verifikasi code is" . $kodeVerifikasiEmail;
 
 $username = "";
 $emailUser = "";
-$subjek = "Code verifikasi";
+$emailSender = "muchammadfachrisyakur@gmail.com";
+$nameOfTheSender = "My Notes";
+$emailSubject = "Kode forgot password acount";
+$messageCode = "Berikut ini adalah kode untuk mereset password: " . $kodeVerifikasiEmail;
 
 if(isset($_GET['forgotPassword'])){
   $id = $_GET['id'];
@@ -30,34 +39,9 @@ if(isset($_GET['forgotPassword'])){
 
   if(mysqli_num_rows($query) == 0){
     header("location : index.php?status-gagal");
-  }else{
-    echo "Ada";
   }
 }
 
-if(isset($_POST['sendCode'])){
-  $sql = "UPDATE user SET kode_verifikasi='$kodeVerifikasiEmail' WHERE username='$username'";
-  $query = mysqli_query($db,$sql);
-  if($query){
-    $headers = "From: muchammadfachrisyakur@gmail.com" . "\r\n" . "Content-Type: text/plain;charset=UTF-8";
-    $messageCode = "Berikur ini adalah kode untuk mereset password: " . $kodeVerifikasiEmail;
-    
-    $sentMessage = mail($emailUser,$subjek,$messageCode,$headers);
-    
-    if($sentMessage){
-      echo "Email sent succesfuly";
-    }else{
-      echo "Email Sending failed";
-    }
-    echo "<script>
-      alert('Kode verifikasi telah dikirimkan ke email akun');
-    </script>";
-  }else{
-    echo "<script>
-      alert('Gagal mengirin kode verifikasi!!');
-    </script>";
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +54,13 @@ if(isset($_POST['sendCode'])){
 </head>
 <body>
   
-  <form action="" method="POST">
+  <form action="proses_send_code-verification.php" method="POST">
+    <input type="text" name="kodeVerifikasiEmail" value="<?= $messageCode; ?>">
+
+    <input type="text" name="username" value="<?= $username; ?>">
+
+    <input type="text" name="emailUser" value="<?= $emailUser; ?>">
+
     <button type="submit" name="sendCode">Kirim kode</button>
   </form>
   
