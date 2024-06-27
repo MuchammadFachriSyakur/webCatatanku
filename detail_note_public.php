@@ -31,6 +31,7 @@ if(isset($_POST['detailNotes'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Notes || Detail notes</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="src/css/detail_note.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,10 +39,13 @@ if(isset($_POST['detailNotes'])){
 </head>
 <body>
     <div class="background-notes" data-background='img/<?= $image; ?>'>
-     <p class="titleNotes"><?= $titleNotes; ?></p>
+      <div class="shadow-top">
+       <a href="dashboard_user.php" class="back"><i class="ph ph-arrow-left"></i></a>
+      </div>
+      <p class="titleNotes"><?= $titleNotes; ?></p>
+      <div class="shadow-bottom"></div>
     </div>
     <form action="proses_hapus_note.php" method="POST">
-      <a href="dashboard_user.php">Kembali</a>
 
       <p class="descriptionNotes"><?= $descriptionNotes; ?></p>
 
