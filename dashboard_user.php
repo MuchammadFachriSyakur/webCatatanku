@@ -94,7 +94,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
       <div class="wrapHeader">
         <div class="wrap1">
           <h1>Mynotes</h1>
-          <img class="profilePicture" src="img/<?= $profilePicture; ?>" alt="Profile Picture">
+          <img class="profilePicture" src="img/<?= $profilePicture; ?>" data-image="img/<?= $profilePicture; ?>"  alt="Profile Picture">
           <img src="img/asset/menu.png" alt="toggle" class="toggle">
         </div>
         <form action="" method="GET" class="searchData">
