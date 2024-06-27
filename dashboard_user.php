@@ -2,6 +2,7 @@
 session_start();
 include("database/config.php");
 $username = $_SESSION['username'];
+$profilePicture = "";
 
 if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
   echo "<script>
@@ -22,6 +23,17 @@ if(isset($_GET['createFolder'])){
     </script>";
   }
 }
+
+if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
+  $userSession = $_SESSION['username'];
+  $sql = "SELECT * FROM user WHERE username='$username'";
+  $query = mysqli_query($db,$sql);
+
+  if($query){
+    $data = mysqli_fetch_array($query);
+    $profilePicture = $data['image'];
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,15 +51,16 @@ if(isset($_GET['createFolder'])){
 <body>
   <main>
     <nav class="nav-bar">
+     <div class="full-wrap">
       <p class="hiddenNavbar">
         <img src="img/asset/close.png" alt="Hidden Navbar" class="hidden">
       </p>
-      
+
       <div class="wrapCreateFolder">
         <p class="username"><?= $username;  ?></p>
-        <img src="img/asset/add.png" alt="Created Folder" class="createdFolder">
+        <i class="ph ph-folder-plus createdFolder"></i>
       </div>
-      
+
       <ul class="wrapFolder">
         <?php 
         $sqlFolder = "SELECT * FROM folder WHERE username='$username'";
@@ -59,7 +72,7 @@ if(isset($_GET['createFolder'])){
             <input type="text" class="hidden" name="idFolder" value="<?= $data['id']; ?>" readonly>
             <input type="text" class="hidden" name="usernameFolder" value="<?= $data['username']; ?>" readonly>
             <input type="text" class="hidden" name="nameFolder" value="<?= $data['name']; ?>" readonly>
-            <button type="submit" name="detailFolder" class="nameFolder" formaction="detail_folder.php"><?= $data['name']; ?></button>
+            <button type="submit" name="detailFolder" class="nameFolder" formaction="detail_folder.php" style="color: rgb(204, 204, 204);"><?= $data['name']; ?></button>
             <div class="wrapAction">
               <button type="submit" class="editFolder" name="editFolder" formaction="proses_edit_folder.php"><i class="ph ph-pencil"></i></button>
               <button type="submit" class="hapusFolder" name="hapusFolder" formaction="proses_hapus_folder.php"><i class="ph ph-trash"></i></button>
@@ -70,16 +83,18 @@ if(isset($_GET['createFolder'])){
         endwhile;
         ?>
       </ul>
-      
+
       <form action="logout.php" method="GET" class="logoutForm">
         <button type="submit">Logout</button>
       </form>
+     </div>
     </nav>
     
     <section class="informationDisplay">
       <div class="wrapHeader">
         <div class="wrap1">
           <h1>Mynotes</h1>
+          <img class="profilePicture" src="img/<?= $profilePicture; ?>" alt="Profile Picture">
           <img src="img/asset/menu.png" alt="toggle" class="toggle">
         </div>
         <form action="" method="GET" class="searchData">
@@ -109,7 +124,7 @@ if(isset($_GET['createFolder'])){
 
             <input type="text" class="hidden" name="idFolder" value="<?= $data['idFolder']; ?>">
 
-            <input type="text" class="hidden" name="usernameFolder" value="<?= $data['usernameFolder']; ?>">
+            <input type="text" name="usernameFolder" class="hidden" value="<?= $data['usernameFolder']; ?>" readonly>
 
             <input type="text" class="hidden" name="NameFolder" value="<?= $data['NameFolder']; ?>">
 
@@ -120,6 +135,7 @@ if(isset($_GET['createFolder'])){
             <input type="text" class="hidden" name="view" value="<?= $data['view']; ?>">
 
             <button type="submit" name="detailNotes">
+              <p class="username"><?= $data['usernameFolder']; ?></p>
               <p class="title"><?= $data['titleNotes']; ?></p>
               <p class="description"><?= $data['descriptionNotes']; ?></p>
               <p class="date"><?= $data['created_at']; ?></p>
