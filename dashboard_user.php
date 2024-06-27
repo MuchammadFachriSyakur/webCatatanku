@@ -87,6 +87,12 @@ if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
       <form action="logout.php" method="GET" class="logoutForm">
         <button type="submit">Logout</button>
       </form>
+
+      <form method="POST" class="settingAcount">
+        <input type="text" class="hidden" name="username" value="<?= $username; ?>" required readonly>
+        <button type="submit" name="settingAcount" formaction="settingAcount.php">Setelan</button>
+      </form>
+
      </div>
     </nav>
     
@@ -100,7 +106,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
         </div>
 
         <form action="" method="GET" class="searchData">
-          <input type="search" name="searching" placeholder="Search..."/>
+          <input type="search" name="searching" placeholder="Masukan judul catatan atau nama username" required/>
           <button type="submit">
             <img src="img/asset/search-interface-symbol.png" alt="Searcing Logo"/>
           </button>
