@@ -52,10 +52,6 @@ if(isset($_POST['editAccount'])){
  $noSpacePassword = str_replace(' ','',$pasword);
  $validationNumberUsername = preg_match("/\d/",$usernameEdit);
  $validationEmailUsername = filter_var($email,FILTER_VALIDATE_EMAIL);
-
- $sql = "SELECT * FROM user WHERE username='$usernameEdit'";
- $query = mysqli_query($db,$sql);
- $cekHasilQuery = mysqli_num_rows($query);
  
  if(strlen($usernameEdit) < 6){
     echo "Username kurang dari 6 digit";
@@ -77,7 +73,19 @@ if(isset($_POST['editAccount'])){
         //Tinggal melanjutkan sql atau mengganti yang lainnya
      }
  }else{
-    
+    $sql = "SELECT * FROM user WHERE username='$usernameEdit'";
+    $query = mysqli_query($db,$sql);
+    $cekHasilQuery = mysqli_num_rows($query);
+
+    if($image_error == 4 ){
+        echo "Tidak mengganti gambar";
+        //Tinggal melanjutkan sql atau mengganti yang lainnya
+        if($cekHasilQuery == 1){
+            echo "Username sudah ada";
+        }
+    }else{
+        
+    }
  }
 }
 ?>
