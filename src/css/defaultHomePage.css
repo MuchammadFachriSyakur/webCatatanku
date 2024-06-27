@@ -4,6 +4,56 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+.modalProfileImage{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  z-index: 250;
+}
+.modalProfileImage .closeModal{
+  box-sizing: border-box;
+  width: 100%;
+  text-align: right;
+  font-size: 38px;
+  font-weight: 700;
+  color: white;
+  padding: 12px;
+  cursor: pointer;
+}
+.modalProfileImage .wrapImage{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modalProfileImage .wrapImage img{
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 350px;
+  height: 350px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
 .wrapAlertFormAdd{
   box-sizing: border-box;
   width: 100%;
