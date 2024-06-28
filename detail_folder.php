@@ -20,13 +20,6 @@ if(isset($_POST['detailFolder'])){
   $namaFolder = htmlspecialchars($_POST['nameFolder']);
 }
 
-if($usernameFolder == "" & $namaFolder == "" & $idFolder == 0){
-  echo "<script>
-    window.location.href = 'dashboard_user.php';
-  </script>";
-  exit;
-}
-
 if(isset($_GET['createFolder'])){
   $nameFolder = htmlspecialchars($_GET['nameFolder']);
   $sql = "INSERT INTO folder (username,name) VALUES ('$username','$nameFolder')";
@@ -38,6 +31,13 @@ if(isset($_GET['createFolder'])){
       window.location.href = 'detail_folder.php';
     </script>";
   }
+}
+
+if($usernameFolder == "" & $namaFolder == "" & $idFolder == 0){
+  echo "<script>
+    window.location.href = 'dashboard_user.php';
+  </script>";
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -56,18 +56,19 @@ if(isset($_GET['createFolder'])){
 <body>
   <main>
     <nav class="nav-bar">
+     <div class="full-wrap"> 
       <p class="hiddenNavbar">
         <img src="img/asset/close.png" alt="Hidden Navbar" class="hidden">
       </p>
       
       <div class="wrapCreateFolder">
         <p class="username"><?= $username;  ?></p>
-        <img src="img/asset/add.png" alt="Created Folder" class="createdFolder">
+        <i class="ph ph-folder-plus createdFolder"></i>
       </div>
       
       <ul class="wrapFolder">
-        <li>
-          <a href="dashboard_user.php">All</a>
+        <li class="backed">
+          <a href="dashboard_user.php" class="back"><i class="ph ph-house"></i> Dashboard</a>
         </li>
         <?php 
         $sqlFolder = "SELECT * FROM folder WHERE username='$username'";
@@ -116,8 +117,14 @@ if(isset($_GET['createFolder'])){
       </ul>
       
       <form action="logout.php" method="GET" class="logoutForm">
-        <button type="submit">Logout</button>
+        <button type="submit"><i class="ph ph-sign-out"></i> Logout</button>
       </form>
+
+      <form method="POST" class="settingAcount">
+        <input type="text" class="hidden" name="username" value="<?= $username; ?>" required readonly>
+        <button type="submit" name="settingAcount" formaction="settingAcount.php"><i class="ph ph-gear-six"></i> Setelan</button>
+      </form>
+     </div>
     </nav>
     
     <section class="informationDisplay">
