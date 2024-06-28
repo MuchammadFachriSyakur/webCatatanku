@@ -50,7 +50,8 @@ if(isset($_POST['editAccount'])){
  $email = htmlspecialchars($_POST['email']);
 
  $hashPassword = hash("sha256",$password);
- 
+ $previousImage = htmlspecialchars($_POST['previousImage']);
+
  $image_name = $_FILES['image']['name'];
  $image_error = $_FILES['image']['error'];
  $image_size = $_FILES['image']['size'];
@@ -80,13 +81,54 @@ if(isset($_POST['editAccount'])){
  }elseif(!$validationNumberUsername){
     echo "Pastikan username berisi setidaknya 1 angka";
  }elseif($usernameOne == $usernameEdit){
-    echo "Anda tidak mengganti username!!!";
     //Tinggal melanjutkan sql atau mengganti yang lainnya
     if($image_error === 4){
-        echo "Tidak mengganti gambar";
-        //Tinggal melanjutkan sql atau mengganti yang lainnya
+        if($password == $passwordOne){
+            $sql = "UPDATE user SET email='$email' WHERE username='$usernameOne'";
+            $query = mysqli_query($db,$sql);
+            
+            $resultQuery = $query ? "<script>alert('Berhasil pada password yang sama dan username sama......'); window.location.href = 'index.php';</script>" : "<script>alert('Gagal pada password yang sama'); window.location.href = 'index.php';</script>";
+            echo $resultQuery;
+        }else{
+           $sql = "UPDATE user SET password='$hashPassword',email='$email' WHERE   username='$usernameOne'";
+           $query = mysqli_query($db,$sql);
+
+           $resultQuery = $query ? "<script>alert('Berhasil pada password yang berbeda'); window.location.href = 'index.php';</script>" : "<script>alert('Gagal pada password yang berbeda'); window.location.href = 'index.php';</script>";
+           echo $resultQuery;
+        }
     }elseif($image_error === 0){
-      echo "Tidak ada kesalahan.File berhasil diunggah";
+      $extentionImage = explode('.',$image_name);
+      $extentionImage = strtolower(end($extentionImage));
+
+      $newNameFile = uniqid();
+      $newNameFile .= '.';
+      $newNameFile .= $extentionImage;
+
+      if(!in_array($extentionImage,$extentionImageValid)){
+         echo "<script>alert('Jangan masukan gambar selain jpg,jpeg dan png!!!'); window.location.href = 'index.php';</script>";
+      }elseif($image_size > 1000000){
+         echo "<script>alert('Pastikan gambar tidak melebihi 1mb!!!'); window.location.href = 'index.php';</script>";
+      }else{
+         if($password == $passwordOne){
+            $sql = "UPDATE user SET username='$usernameEdit',email='$email',image='$newNameFile' WHERE username='$usernameOne'";
+            $query = mysqli_query($db,$sql);
+
+            if($query){
+               unlink('img/' . $previousImage);
+               move_uploaded_file($image_tmp_name,'img/' . $newNameFile);
+               echo "<script>alert('Berhasil pada password yang sama');</>";
+            }else{
+               echo "<script>alert('Gagal pada password yang sama'); window.location.href = 'index.php';</script>";
+            }
+          }else{
+            echo "Password beda";
+            $sql = "UPDATE user SET username='$usernameEdit',password='$hashPassword',email='$email' WHERE username='$usernameOne'";
+            $query = mysqli_query($db,$sql);
+
+            $resultQuery = $query ? "<script>alert('Berhasil pada password yang berbeda'); window.location.href = 'index.php';</script>" : "<script>alert('Gagal pada password yang berbeda'); window.location.href = 'index.php';</script>";
+            echo $resultQuery;
+          }
+      }
     }
  }else{
     if($image_error == 4 ){
@@ -106,7 +148,6 @@ if(isset($_POST['editAccount'])){
             $resultQuery = $query ? "<script>alert('Berhasil pada password yang berbeda'); window.location.href = 'index.php';</script>" : "<script>alert('Gagal pada password yang berbeda'); window.location.href = 'index.php';</script>";
             echo $resultQuery;
           }
-
         }
     }elseif($image_error === 0){
       $extentionImage = explode('.',$image_name);
@@ -120,9 +161,30 @@ if(isset($_POST['editAccount'])){
          echo "Username sudah ada";
          exit;
       }elseif(!in_array($extentionImage,$extentionImageValid)){
-         echo "<script>alert('Jangan masukan gambar selain jpg,jpeg dan png!!!')</script>";
+         echo "<script>alert('Jangan masukan gambar selain jpg,jpeg dan png!!!'); window.location.href = 'index.php';</script>";
       }elseif($image_size > 1000000){
-         echo "<script>alert('Pastikan gambar tidak melebihi 1mb!!!')</script>";
+         echo "<script>alert('Pastikan gambar tidak melebihi 1mb!!!'); window.location.href = 'index.php';</script>";
+      }else{
+         if($password == $passwordOne){
+            echo "Gambar didatabase " . $previousImage;
+            $sql = "UPDATE user SET username='$usernameEdit',email='$email',image='$newNameFile' WHERE username='$usernameOne'";
+            $query = mysqli_query($db,$sql);
+
+            if($query){
+               unlink('img/' . $previousImage);
+               move_uploaded_file($image_tmp_name,'img/' . $newNameFile);
+               echo "<script>alert('Berhasil pada password yang sama');</>";
+            }else{
+               echo "<script>alert('Gagal pada password yang sama'); window.location.href = 'index.php';</script>";
+            }
+          }else{
+            echo "Password beda";
+            $sql = "UPDATE user SET username='$usernameEdit',password='$hashPassword',email='$email' WHERE username='$usernameOne'";
+            $query = mysqli_query($db,$sql);
+
+            $resultQuery = $query ? "<script>alert('Berhasil pada password yang berbeda'); window.location.href = 'index.php';</script>" : "<script>alert('Gagal pada password yang berbeda'); window.location.href = 'index.php';</script>";
+            echo $resultQuery;
+          }
       }
     }
  }
@@ -159,6 +221,8 @@ if(isset($_POST['editAccount'])){
 
     <p>Gambar Sebelumnya:</p>
     <input type="image" src="img/<?= $image; ?>" alt=""><br><br>
+    <input type="text" name="previousImage" value="<?= $image; ?>">
+
     <input type="file" name="image" value="<?= $image; ?>">
     <button type="submit" name="editAccount" formaction="">Edit</button>
    </form>
