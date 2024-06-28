@@ -164,16 +164,22 @@ main .nav-bar .wrapFolder{
   margin-top: 32px;
   list-style-type: none;
   overflow: auto;
+  color: white;
   gap: 18px;
 }
 main .nav-bar .wrapFolder li{
- box-sizing: border-box;
- width: 100%;
- padding: 18px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 20px;
+  color: rgb(255, 255, 255);
 }
 main .nav-bar .wrapFolder .backed{
   box-sizing: border-box;
   width: 100%;
+}
+main .nav-bar .wrapFolder .FolderValid{
+  background-color: #DEDEDE;
+  color: white;
 }
 main .nav-bar .wrapFolder li .back{
   box-sizing: border-box;
@@ -181,9 +187,6 @@ main .nav-bar .wrapFolder li .back{
   font-size: 16px;
   color: white;
   text-decoration: none;
-}
-main .nav-bar .wrapFolder .FolderValid{
-  background-color: #DEDEDE;
 }
 main .nav-bar .wrapFolder li form{
   box-sizing: border-box; 
@@ -203,7 +206,17 @@ main .nav-bar .wrapFolder li form .nameFolder{
   border: none;
   outline: none;
   background-color: transparent;
+  color: white;
   padding: 4px;
+}
+main .nav-bar .wrapFolder li .FolderValid .namesFolder{
+  box-sizing: border-box;
+  width: 70%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: black;
 }
 main .nav-bar .wrapFolder li form .wrapAction{
   box-sizing: border-box;
@@ -220,6 +233,10 @@ main .nav-bar .wrapFolder li form .wrapAction button{
   align-items: center;
   font-size: 16px;
   padding: 8px;
+  color: white;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 main .nav-bar .wrapCreateFolder{
   box-sizing: border-box;
