@@ -122,8 +122,25 @@ main .nav-bar{
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 24px;
   background-color: #F5F6F8;
+  background-image: url("../../img/bg3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  color: white;
+}
+main .nav-bar .full-wrap{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+  color: white;
 }
 main .nav-bar .hiddenNavbar{
   width: 100%;
@@ -153,6 +170,17 @@ main .nav-bar .wrapFolder li{
  box-sizing: border-box;
  width: 100%;
  padding: 18px 20px;
+}
+main .nav-bar .wrapFolder .backed{
+  box-sizing: border-box;
+  width: 100%;
+}
+main .nav-bar .wrapFolder li .back{
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
 }
 main .nav-bar .wrapFolder .FolderValid{
   background-color: #DEDEDE;
@@ -212,8 +240,9 @@ main .nav-bar .wrapCreateFolder .username{
 }
 main .nav-bar .wrapCreateFolder .createdFolder{
   box-sizing: border-box;
-  width: 20px;
-  height: 20px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
 }
 main .nav-bar .logoutForm{
   box-sizing: border-box;
@@ -233,6 +262,30 @@ main .nav-bar .logoutForm button{
   transition: all 0.3s ease-in-out;
 }
 main .nav-bar .logoutForm button:hover{
+  background-color: #14B8A6;
+  color: white;
+}
+main .nav-bar .settingAcount{
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 16px;
+}
+main .nav-bar .settingAcount button{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 30px;
+  background-color: transparent;
+  border: 2px solid #14B8A6;
+  color: #14B8A6;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+main .nav-bar .settingAcount .hidden{
+  display: none;
+}
+main .nav-bar .settingAcount button:hover{
   background-color: #14B8A6;
   color: white;
 }
