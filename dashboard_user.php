@@ -91,6 +91,7 @@ if(isset($_GET['createFolder'])){
         <li>
           <form method="POST">
             <input type="text" class="hidden" name="idFolder" value="<?= $idFolder; ?>" readonly>
+            <input type="text" class="hidden" name="idUsername" value="<?= $idUsername; ?>" readonly>
             <input type="text" class="hidden" name="usernameFolder" value="<?= $nameUsername; ?>" readonly>
             <input type="text" class="hidden" name="nameFolder" value="<?= $nameFolder; ?>" readonly>
             <button type="submit" name="detailFolder" class="nameFolder" formaction="detail_folder.php" style="color: rgb(204, 204, 204);"><?= $nameFolder; ?></button>

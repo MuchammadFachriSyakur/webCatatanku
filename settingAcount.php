@@ -139,13 +139,13 @@ if(isset($_POST['editAccount'])){
             $sql = "UPDATE user SET username='$usernameEdit',email='$email' WHERE username='$usernameOne'";
             $query = mysqli_query($db,$sql);
 
-            $resultQuery = $query ? "<script>alert('Berhasil pada password yang sama'); window.location.href = 'index.php';</>" : "<script>alert('Gagal pada password yang sama'); window.location.href = 'index.php';</script>";
+            $resultQuery = $query ? "<script>alert('Berhasil pada password yang sama'); window.location.href = 'dashboard_user.php';</script>" : "<script>alert('Gagal pada password yang sama'); window.location.href = 'dashboard_user.php';</script>";
             echo $resultQuery;
           }else{
             $sql = "UPDATE user SET username='$usernameEdit',password='$hashPassword',email='$email' WHERE username='$usernameOne'";
             $query = mysqli_query($db,$sql);
 
-            $resultQuery = $query ? "<script>alert('Berhasil pada password yang berbeda'); window.location.href = 'index.php';</script>" : "<script>alert('Gagal pada password yang berbeda'); window.location.href = 'index.php';</script>";
+            $resultQuery = $query ? "<script>alert('Berhasil pada password yang berbeda'); window.location.href = 'dashboard_user.php';</script>" : "<script>alert('Gagal pada password yang berbeda'); window.location.href = 'dashboard_user.php';</script>";
             echo $resultQuery;
           }
         }

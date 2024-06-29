@@ -50,6 +50,10 @@ if(isset($_POST['submitedFormLogin'])){
       if($query){
         $regitrasi_message = "Akun berhasl dibuat";
         move_uploaded_file($image_tmp_name,'img/' . $new_name_file);
+        echo "<script>
+           window.location.href = 'index.php';
+        </script>";
+        exit;
       }else{
         $regitrasi_message = "Akun gagal dibuat,silahkan coba lagi";
       }

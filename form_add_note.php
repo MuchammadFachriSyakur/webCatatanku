@@ -4,12 +4,28 @@ include("database/config.php");
 $idFolder = 0;
 $nameFolder = "";
 $usernameToAddFolder = "";
+$usernameFix = "";
+$usernameSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
 
-if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
+if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && !isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
   echo "<script>
     window.location.href = 'index.php';
   </script>";
   exit;
+}
+
+if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['is_login_user'])){
+  $userSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
+  $sql = "SELECT * FROM user";
+  $query = mysqli_query($db,$sql);
+
+  while($data = mysqli_fetch_array($query)){
+    $hashUsernameDatabase = hash("sha256",$data['username']);
+    if($usernameSession === $hashUsernameDatabase){
+      $usernameFix = $data['username'];
+      $profilePicture = $data['image'];
+    }
+  }
 }
 
 if(isset($_POST['addNote'])){
@@ -30,7 +46,6 @@ if(isset($_POST['tambahCatatan'])){
   $usernamefolder = htmlspecialchars($_POST['username']);
 
   $nameFile = $_FILES['background_notes']['name'];
-  echo $nameFile;
   $sizeFile = $_FILES['background_notes']['size'];
   $errorFile = $_FILES['background_notes']['error'];
   $tmpNameFile = $_FILES['background_notes']['tmp_name'];
@@ -90,6 +105,13 @@ if(isset($_POST['tambahCatatan'])){
 }
 
 if($idFolder == 0 & $nameFolder == "" & $usernameToAddFolder == ""){
+  echo "<script>
+    window.location.href = 'index.php';
+  </script>";
+  exit;
+}
+
+if(!$usernameFix === $usernameToAddFolder){
   echo "<script>
     window.location.href = 'index.php';
   </script>";

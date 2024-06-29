@@ -1,2 +1,14 @@
-navbar 
-Zindex = 100
+ /****                          ****\
+/****  Halaman dashboard_user.php ****\
+\****                             ****/
+ \****                           ****/
+
+.modalProfileImage
+z-index: 250;
+
+.wrapAlertFormAdd
+z-index: 200;
+
+layar kurang dari 768px:
+main .nav-bar.show
+z-index: 100;

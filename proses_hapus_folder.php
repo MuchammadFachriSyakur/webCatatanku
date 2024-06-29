@@ -70,9 +70,9 @@ if(isset($_POST['hapusFolder'])){
     }
   }
 }else{
- echo "<script>
-  window.location.href = 'index.php';
- </script>";
- exit;
+echo "<script>
+ window.location.href = 'index.php';
+</script>";
+exit;
 }
 ?>

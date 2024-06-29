@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("database/config.php");
-$username = $_SESSION['username'];
+$username = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
 
 if(isset($_POST['detailNotes'])){
   $id = $_POST['id'];
@@ -23,6 +23,13 @@ if(isset($_POST['detailNotes'])){
     echo "<script>
     window.location.href = 'dashboard_user.php';
   </script>";
+}
+
+if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && !isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
+  echo "<script>
+    window.location.href = 'index.php';
+  </script>";
+  exit;
 }
 ?>
 <!DOCTYPE html>

@@ -1,8 +1,9 @@
 <?php 
 session_start();
 include("database/config.php");
-$username = $_SESSION['username'];
+$username = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
 $idFolder = 0;
+$idUsername = "";
 $usernameFolder = "";
 $namaFolder = "";
 $idFolderValid = 0;
@@ -14,7 +15,7 @@ if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230
   exit;
 }
 
-if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['is_login_user'])){
+if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7'])){
   $userSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
   $sql = "SELECT * FROM user";
   $query = mysqli_query($db,$sql);
@@ -30,18 +31,19 @@ if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d
 if(isset($_POST['detailFolder'])){
   $idFolder = $_POST['idFolder'];
   $usernameFolder = htmlspecialchars($_POST['usernameFolder']);
+  $idUsername = $_POST['idUsername'];
   $namaFolder = htmlspecialchars($_POST['nameFolder']);
 }
 
 if(isset($_GET['createFolder'])){
   $nameFolder = htmlspecialchars($_GET['nameFolder']);
-  $sql = "INSERT INTO folder (username,name) VALUES ('$username','$nameFolder')";
+  $idUsernameForm = $_GET['idUsername'];
+  $sql = "INSERT INTO folder (idUsername,name) VALUES ('$idUsernameForm','$nameFolder')";
   $query = mysqli_query($db,$sql);
   
   if($query){
     echo "<script>
       alert('Data berhasil ditambahkan');
-      window.location.href = 'detail_folder.php';
     </script>";
   }
 }
@@ -75,7 +77,7 @@ if($usernameFolder == "" & $namaFolder == "" & $idFolder == 0){
       </p>
       
       <div class="wrapCreateFolder">
-        <p class="username"><?= htmlspecialchars($username);  ?></p>
+        <p class="username"><?= $username;  ?></p>
         <i class="ph ph-folder-plus createdFolder"></i>
       </div>
       
@@ -84,20 +86,20 @@ if($usernameFolder == "" & $namaFolder == "" & $idFolder == 0){
           <a href="dashboard_user.php" class="back"><i class="ph ph-house"></i> Dashboard</a>
         </li>
         <?php 
-        $sqlFolder = "SELECT * FROM folder WHERE username='$username'";
+        $sqlFolder = "SELECT * FROM folder WHERE idUsername='$idUsername'";
         $queryFolder = mysqli_query($db,$sqlFolder);
         while($data = mysqli_fetch_array($queryFolder)):
         ?>
         <?php 
         if($idFolder == $data['id']): 
         $idFolderValid = $data['id'];
-        $usernameDatabase1Folder = htmlspecialchars($data['username']);
+        // $usernameDatabase1Folder = htmlspecialchars($data['username']);
         $nameDatabase1Folder = htmlspecialchars($data['name']);
         ?>
          <li class="FolderValid">
           <form method="POST">
             <input type="text" class="hidden" name="idFolder" value="<?= $idFolderValid; ?>" readonly>
-            <input type="text" class="hidden" name="usernameFolder" value="<?= $usernameDatabase1Folder; ?>" readonly>
+            <input type="text" class="hidden" name="usernameFolder" value="<?= $usernameFolder; ?>" readonly>
             <input type="text" class="hidden" name="nameFolder" value="<?= $nameDatabase1Folder; ?>" readonly>
             <button type="submit" name="detailFolder" class="namesFolder" formaction="detail_folder.php"><?= $nameDatabase1Folder; ?></button>
             <div class="wrapAction">
@@ -112,16 +114,16 @@ if($usernameFolder == "" & $namaFolder == "" & $idFolder == 0){
         ?>
         
         <?php 
-        $sqlFolder2 = "SELECT * FROM folder WHERE username='$username' AND id <> $idFolderValid";
+        $sqlFolder2 = "SELECT * FROM folder WHERE idUsername='$idUsername' AND id <> $idFolderValid";
         $queryFolder2 = mysqli_query($db,$sqlFolder2);
         while($data = mysqli_fetch_array($queryFolder2)):
-          $usernameDatabase2Folder = htmlspecialchars($data['username']);
+          // $usernameDatabase2Folder = htmlspecialchars($data['username']);
           $nameDatabase2Folder = htmlspecialchars($data['name']);
         ?>
         <li class="folderInvalid">
           <form method="POST">
             <input type="text" class="hidden" name="idFolder" value="<?= $data['id']; ?>" readonly>
-            <input type="text" class="hidden" name="usernameFolder" value="<?= $usernameDatabase2Folder; ?>" readonly>
+            <input type="text" class="hidden" name="usernameFolder" value="<?= $usernameFolder; ?>" readonly>
             <input type="text" class="hidden" name="nameFolder" value="<?= $nameDatabase2Folder; ?>" readonly>
             <button type="submit" name="detailFolder" class="nameFolder" formaction="detail_folder.php"><?= $nameDatabase2Folder; ?></button>
             <div class="wrapAction">
@@ -174,26 +176,26 @@ if($usernameFolder == "" & $namaFolder == "" & $idFolder == 0){
 
             <input type="text" class="hidden" name="id" value="<?= $data['id']; ?>">
 
-            <input type="text" class="hidden" name="titleNotes" value="<?= $data['titleNotes']; ?>" readonly>
+            <input type="text" class="hidden" name="titleNotes" value="<?= htmlspecialchars($data['titleNotes']); ?>" readonly>
 
-            <input type="text" class="hidden" name="descriptionNotes" value="<?= $data['descriptionNotes']; ?>" readonly>
+            <input type="text" class="hidden" name="descriptionNotes" value="<?= htmlspecialchars($data['descriptionNotes']); ?>" readonly>
 
-            <input type="text" class="hidden" name="publish" value="<?= $data['publish']; ?>" readonly>
+            <input type="text" class="hidden" name="publish" value="<?= htmlspecialchars($data['publish']); ?>" readonly>
 
             <input type="text" class="hidden" name="idFolder" value="<?= $data['idFolder']; ?>">
 
-            <input type="text" class="hidden" name="usernameFolder" value="<?= $data['usernameFolder']; ?>">
+            <input type="text" class="hidden" name="usernameFolder" value="<?= htmlspecialchars($data['usernameFolder']); ?>">
 
-            <input type="text" class="hidden" name="NameFolder" value="<?= $data['NameFolder']; ?>">
+            <input type="text" class="hidden" name="NameFolder" value="<?= htmlspecialchars($data['NameFolder']); ?>">
 
-            <input type="text" class="hidden" name="created_at" value="<?= $data['created_at']; ?>">
+            <input type="text" class="hidden" name="created_at" value="<?= htmlspecialchars($data['created_at']); ?>">
 
-            <input type="text" class="hidden" name="image" value="<?= $data['image']; ?>">
+            <input type="text" class="hidden" name="image" value="<?= htmlspecialchars($data['image']); ?>">
 
             <button type="submit" name="detailNotes">
-              <p class="title"><?= $data['titleNotes']; ?></p>
-              <p class="description"><?= $data['descriptionNotes']; ?></p>
-              <p class="date"><?= $data['created_at']; ?></p>
+              <p class="title"><?= htmlspecialchars($data['titleNotes']); ?></p>
+              <p class="description"><?= htmlspecialchars($data['descriptionNotes']); ?></p>
+              <p class="date"><?= htmlspecialchars($data['created_at']); ?></p>
             </button>
           </form>
          <?php endif; ?>
@@ -209,6 +211,7 @@ if($usernameFolder == "" & $namaFolder == "" & $idFolder == 0){
         <img class="delete" src="img/asset/close.png" alt="deleteAlertFolder" />
       </span>
       <h1>Formulir create folder</h1>
+      <input type="text" name="idUsername" value="<?= $idUsername; ?>" style="display:none;>
       <input type="text" name="nameFolder" placeholder="Nama folder..." required>
       <button type="submit" name="createFolder" class="btn_create">Create</button>
     </form>

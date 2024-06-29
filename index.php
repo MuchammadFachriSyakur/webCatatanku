@@ -8,12 +8,12 @@ $checkerUsername = true;
 // Username : f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2
 // Is login User : ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7
 
-if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
-  echo "<script>
-    window.location.href = 'dashboard_user.php';
-  </script>";
-  exit;
-}
+// if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
+//   echo "<script>
+//     window.location.href = 'dashboard_user.php';
+//   </script>";
+//   exit;
+// }
             
 if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
   $id = $_COOKIE['id'];

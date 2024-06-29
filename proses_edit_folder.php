@@ -2,8 +2,9 @@
 session_start();
 include("database/config.php");
 $idFolder = 0;
-$username = $_SESSION['username'];
+$username = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
 $usernameFolderPadaDatabase = "";
+$usernameFix = "";
 $namaFolderPadaDatabase = "";
 
 if($usernameFolderPadaDatabase == "" & $namaFolderPadaDatabase == "" & !$idFolder == 0){
@@ -13,7 +14,21 @@ if($usernameFolderPadaDatabase == "" & $namaFolderPadaDatabase == "" & !$idFolde
   exit;
 }
 
-if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
+if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7'])){
+  $userSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
+  $sql = "SELECT * FROM user";
+  $query = mysqli_query($db,$sql);
+
+  while($data = mysqli_fetch_array($query)){
+    $username = $data['username'];
+    $hashUsernameDatabase = hash("sha256",$data['username']);
+    if($userSession === $hashUsernameDatabase){
+      $usernameFix = $username;
+    }
+  }
+}
+
+if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && !isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
   echo "<script>
     window.location.href = 'index.php';
   </script>";
@@ -25,10 +40,10 @@ if(isset($_POST['editFolder'])){
   $sql = "SELECT * FROM folder WHERE id='$idFolder'";
   $query = mysqli_query($db,$sql);
   $data = mysqli_fetch_array($query);
-  $usernameFolderPadaDatabase = $data['username'];
+  $usernameFolderPadaDatabase = $data['idUsername'];
   $namaFolderPadaDatabase = $data['name'];
-  
-  if(!$username == $usernameFolderPadaDatabase){
+
+  if(!$usernameFix === $usernameFolderPadaDatabase){
     echo "<script>
       window.location.href = 'dashboard_user.php';
     </script>";
@@ -40,22 +55,28 @@ if(isset($_POST['updateFolder'])){
   $idFol = $_POST['idFolder'];
   $usernameFolder = htmlspecialchars($_POST['username']);
   $namaFolder = htmlspecialchars($_POST['namaFolder']);
-  
-  $sql = "UPDATE folder SET name='$namaFolder' WHERE id='$idFol'";
-  $query = mysqli_query($db,$sql);
-  
-  if($query){
+
+  if(!$usernameFix == $usernameFolder){
     echo "<script>
-      alert('Berhasil mengubah nama folder');
-      window.location.href = 'dashboard_user.php';
-    </script>";
+    window.location.href = 'dashboard_user.php';
+   </script>";
   }else{
-    echo "<script>
-      alert('Gagal mengubah nama folder');
-      window.location.href = 'dashboard_user.php';
-    </script>";
+    $sql = "UPDATE folder SET name='$namaFolder' WHERE id='$idFol'";
+    $query = mysqli_query($db,$sql);
+  
+    if($query){
+      echo "<script>
+        alert('Berhasil mengubah nama folder');
+        window.location.href = 'dashboard_user.php';
+      </script>";
+    }else{
+      echo "<script>
+        alert('Gagal mengubah nama folder');
+        window.location.href = 'dashboard_user.php';
+      </script>";
+    }
+    exit;
   }
-  exit;
 }
 ?>
 <!DOCTYPE html>
