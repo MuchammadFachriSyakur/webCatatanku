@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include("database/config.php");
+$idUsername = 0;
 $username = "";
 $usernameSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
 $checkerUsername = true;
@@ -22,16 +23,21 @@ if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d
     $hashUsernameDatabase = hash("sha256",$data['username']);
     if($usernameSession === $hashUsernameDatabase){
       $checkerUsername = true;
+      $idUsername = $data['id'];
       $username = $data['username'];
       $profilePicture = $data['image'];
+    }else{
+      $checkerUsername = false;
     }
   }
+
 }
 
 if(isset($_GET['createFolder'])){
   $nameFolder = htmlspecialchars($_GET['nameFolder']);
-  $sql = "INSERT INTO folder (username,name) VALUES ('$username','$nameFolder')";
+  $sql = "INSERT INTO folder (idUsername,name) VALUES ('$idUsername','$nameFolder')";
   $query = mysqli_query($db,$sql);
+  
   
   if($query){
     echo "<script>
@@ -39,14 +45,6 @@ if(isset($_GET['createFolder'])){
       window.location.href = 'dashboard_user.php';
     </script>";
   }
-}
-
-if($checkerUsername === false){
-  echo "<script>
-    alert('Data berhasil ditambahkan');
-    window.location.href = 'index.php';
-  </script>";
-  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -77,16 +75,25 @@ if($checkerUsername === false){
 
       <ul class="wrapFolder">
         <?php 
-        $sqlFolder = "SELECT * FROM folder WHERE username='$username'";
+        $sqlFolder = "SELECT * FROM folder WHERE idUsername='$idUsername'";
         $queryFolder = mysqli_query($db,$sqlFolder);
         while($data = mysqli_fetch_array($queryFolder)):
+         $idFolder = $data['id'];
+         $nameFolder = $data['name'];
+         $idUsername = $data['idUsername'];
+         $sql = "SELECT * FROM user WHERE id='$idUsername'";
+         $query = mysqli_query($db,$sql);
+
+         if(mysqli_num_rows($query) > 0):
+          $dataUser = mysqli_fetch_array($query);
+          $nameUsername = $dataUser['username'];
         ?>
         <li>
           <form method="POST">
-            <input type="text" class="hidden" name="idFolder" value="<?= $data['id']; ?>" readonly>
-            <input type="text" class="hidden" name="usernameFolder" value="<?= $data['username']; ?>" readonly>
-            <input type="text" class="hidden" name="nameFolder" value="<?= $data['name']; ?>" readonly>
-            <button type="submit" name="detailFolder" class="nameFolder" formaction="detail_folder.php" style="color: rgb(204, 204, 204);"><?= $data['name']; ?></button>
+            <input type="text" class="hidden" name="idFolder" value="<?= $idFolder; ?>" readonly>
+            <input type="text" class="hidden" name="usernameFolder" value="<?= $nameUsername; ?>" readonly>
+            <input type="text" class="hidden" name="nameFolder" value="<?= $nameFolder; ?>" readonly>
+            <button type="submit" name="detailFolder" class="nameFolder" formaction="detail_folder.php" style="color: rgb(204, 204, 204);"><?= $nameFolder; ?></button>
             <div class="wrapAction">
               <button type="submit" class="editFolder" name="editFolder" formaction="proses_edit_folder.php"><i class="ph ph-pencil"></i></button>
               <button type="submit" class="hapusFolder" name="hapusFolder" formaction="proses_hapus_folder.php"><i class="ph ph-trash"></i></button>
@@ -94,6 +101,7 @@ if($checkerUsername === false){
           </form>
         </li>
         <?php
+        endif;
         endwhile;
         ?>
       </ul>
