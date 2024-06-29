@@ -1,14 +1,31 @@
 <?php 
 session_start();
 include("database/config.php");
-$username = $_SESSION['username'];
+$username = "";
+$usernameSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
+$checkerUsername = true;
 $profilePicture = "";
 
-if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
+if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && !isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
   echo "<script>
     window.location.href = 'index.php';
   </script>";
   exit;
+}
+
+if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7'])){
+  $userSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
+  $sql = "SELECT * FROM user";
+  $query = mysqli_query($db,$sql);
+  
+  while($data = mysqli_fetch_array($query)){
+    $hashUsernameDatabase = hash("sha256",$data['username']);
+    if($usernameSession === $hashUsernameDatabase){
+      $checkerUsername = true;
+      $username = $data['username'];
+      $profilePicture = $data['image'];
+    }
+  }
 }
 
 if(isset($_GET['createFolder'])){
@@ -24,15 +41,12 @@ if(isset($_GET['createFolder'])){
   }
 }
 
-if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
-  $userSession = $_SESSION['username'];
-  $sql = "SELECT * FROM user WHERE username='$username'";
-  $query = mysqli_query($db,$sql);
-
-  if($query){
-    $data = mysqli_fetch_array($query);
-    $profilePicture = $data['image'];
-  }
+if($checkerUsername === false){
+  echo "<script>
+    alert('Data berhasil ditambahkan');
+    window.location.href = 'index.php';
+  </script>";
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -53,7 +67,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
     <nav class="nav-bar">
      <div class="full-wrap">
       <p class="hiddenNavbar">
-        <img src="img/asset/close.png" alt="Hidden Navbar" class="hidden">
+        <i class="ph ph-x close hidden"></i>
       </p>
 
       <div class="wrapCreateFolder">
@@ -70,8 +84,8 @@ if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
         <li>
           <form method="POST">
             <input type="text" class="hidden" name="idFolder" value="<?= $data['id']; ?>" readonly>
-            <input type="text" class="hidden" name="usernameFolder" value="<?= htmlspecialchars($data['username']); ?>" readonly>
-            <input type="text" class="hidden" name="nameFolder" value="<?= htmlspecialchars($data['name']); ?>" readonly>
+            <input type="text" class="hidden" name="usernameFolder" value="<?= $data['username']; ?>" readonly>
+            <input type="text" class="hidden" name="nameFolder" value="<?= $data['name']; ?>" readonly>
             <button type="submit" name="detailFolder" class="nameFolder" formaction="detail_folder.php" style="color: rgb(204, 204, 204);"><?= $data['name']; ?></button>
             <div class="wrapAction">
               <button type="submit" class="editFolder" name="editFolder" formaction="proses_edit_folder.php"><i class="ph ph-pencil"></i></button>
@@ -85,12 +99,12 @@ if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
       </ul>
 
       <form action="logout.php" method="GET" class="logoutForm">
-        <button type="submit">Logout</button>
+        <button type="submit"><i class="ph ph-sign-out"></i> Logout</button>
       </form>
 
       <form method="POST" class="settingAcount">
         <input type="text" class="hidden" name="username" value="<?= $username; ?>" required readonly>
-        <button type="submit" name="settingAcount" formaction="settingAcount.php">Setelan</button>
+        <button type="submit" name="settingAcount" formaction="settingAcount.php"><i class="ph ph-gear-six"></i> Setelan</button>
       </form>
 
      </div>
@@ -158,7 +172,10 @@ if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
             <input type='text' class='hidden' name='view' value='$view'>
 
             <button type='submit' name='detailNotes'>
-              <p class='username'>$usernameFolder</p>
+              <div class='noteOwnerInformation'>
+               <img src='img/$image' alt='Profile Picture'>
+               <p class='username'>$usernameFolder</p>
+              </div>
               <p class='title'>$titleNotes</p>
               <p class='description'>$descriptionNotes</p>
               <p class='date'>$created_at</p>
@@ -180,7 +197,6 @@ if(isset($_SESSION['username']) && isset($_SESSION['is_login_user'])){
         <?php endif; ?>
 
       </div>
-
     </section>
     
   </main>
