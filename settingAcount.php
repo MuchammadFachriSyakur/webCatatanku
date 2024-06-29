@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("database/config.php");
-$usernameCookie = $_SESSION['username'];
+$usernameCookie = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
 $idUsername = "";
 $username = "";
 $usernameOne = "";
@@ -13,7 +13,7 @@ $image = "";
 //Contoh penggunaan ternary operator;
 $result = 15 > 14 ? "15 tidak lebih besar dari 14" : "15 tidak lebih besar dari 14";
 
-if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
+if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && !isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
     echo "<script>
       window.location.href = 'index.php';
     </script>";
@@ -188,6 +188,13 @@ if(isset($_POST['editAccount'])){
       }
     }
  }
+}
+
+if(!$usernameOne == $usernameCookie){
+   echo "<script>
+     window.location.href = 'dashboard_user.php';
+   </script>";
+   exit;
 }
 ?>
 
