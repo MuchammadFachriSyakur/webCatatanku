@@ -2,6 +2,18 @@
 session_start();
 include ("database/config.php");
 $login_message = "";
+$checkerUsername = true;
+
+// Session Name 
+// Username : f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2
+// Is login User : ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7
+
+if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
+  echo "<script>
+    window.location.href = 'dashboard_user.php';
+  </script>";
+  exit;
+}
             
 if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
   $id = $_COOKIE['id'];
@@ -12,17 +24,16 @@ if(isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 
   $data = mysqli_fetch_assoc($result);
 
-  echo $key;
-  echo "<br>";
-  echo hash('sha256', $data['username']);
-
   // Cek cookie dan username 
   if ($key === hash('sha256', $data['username'])) {
-    $_SESSION['is_login_user'] = true;
-    $_SESSION['username'] = $data['username'];
+    $checkerUsername = true;
+    $_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7'] = true;
+    $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'] = hash('sha256', $data['username']);
     echo "<script>
      window.location.href = 'dashboard_user.php';
     </script>";
+  }else{
+    $checkerUsername = false;
   }
 }
 
@@ -63,17 +74,12 @@ if (isset($_POST['submitedFormLogin'])) {
       $user_password = $data['password'];
       $user_level = $data['level'];
 
-      echo "Password User didatabase adalah: " . $user_password;
-      echo "Password User diinput adalah: " . $hash_password;
-
       // Cek Password
-      if ($user_password == $hash_password) {
-        echo "Pasword benar";
+      if ($user_password == $hash_password){
 
         // Cek Level akun
         if ($user_level == "admin") {
-          echo "Level akun adalah : admin";
-          $_SESSION['usernameAdmin'] = $user_name;
+          $_SESSION['usernameAdmin'] = hash('sha256', $user_name);
           $_SESSION['is_login_admin'] = true;
 
           if (isset($_POST['remember_me'])) {
@@ -84,10 +90,9 @@ if (isset($_POST['submitedFormLogin'])) {
           echo "<script>
             window.location.href = 'dashboard_admin.php';
           </script>";
-        } else {
-          echo "Level akun adalah : user";
-          $_SESSION['username'] = $user_name;
-          $_SESSION['is_login_user'] = true;
+        }else{
+          $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'] = hash('sha256', $user_name);
+          $_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7'] = true;
 
           if (isset($_POST['remember_me'])) {
             setcookie('id', $user_id, time() + 120);
@@ -128,7 +133,13 @@ if (isset($_POST['forgotPassword'])) {
   }
 }
 
+if($checkerUsername === false){
+  unset($_COOKIE['id']);
+  unset($_COOKIE['key']);
 
+  setcookie('id',null,-1,'/');
+  setcookie('key',null,-1,'/');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
