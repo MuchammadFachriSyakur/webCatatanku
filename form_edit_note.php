@@ -2,13 +2,27 @@
 session_start();
 include("database/config.php");
 $usernameFolder = "";
+$username = "";
 $image = "";
 
-if(!isset($_SESSION['username']) && !isset($_SESSION['is_login_user']) ){
+if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && !isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
   echo "<script>
-   window.location.href = 'index.php';
+   window.location.href = 'dashboard_user.php';
   </script>";
   exit;
+}
+
+if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7'])){
+  $userSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
+  $sql = "SELECT * FROM user";
+  $query = mysqli_query($db,$sql);
+
+  while($data = mysqli_fetch_array($query)){
+    $hashUsernameDatabase = hash("sha256",$data['username']);
+    if($userSession === $hashUsernameDatabase){
+      $username = $data['username'];
+    }
+  }
 }
 
 if(isset($_POST['editNote'])){
@@ -26,13 +40,13 @@ if(isset($_POST['editNote'])){
 if(isset($_POST['editNotes'])){
   $id = $_POST['id'];
   $titleNotes = htmlspecialchars($_POST['titleNotes']);
-  $descriptionNotes = htmlspecialchars($_POST['descriptionNotes']);
+  $descriptionNotes = $_POST['descriptionNotes'];
+  $saveString = nl2br(str_replace(" ", " &nbsp;",$descriptionNotes));
   $idFolder = htmlspecialchars($_POST['idFolder']);
   $NameFolder = htmlspecialchars($_POST['NameFolder']);
   $username = htmlspecialchars($_POST['username']);
   $publish = htmlspecialchars($_POST['publish']);
   $gambarSebelumnya = htmlspecialchars($_POST['image']);
-
   
   $nameFile = $_FILES['background_notes']['name'];
   $sizeFile = $_FILES['background_notes']['size'];
@@ -66,7 +80,7 @@ if(isset($_POST['editNotes'])){
     $newNameFile .= $ektensiGambar;
 
     if($publish == "Private"){
-        $sql = "UPDATE notes SET titleNotes='$titleNotes',descriptionNotes='$descriptionNotes',publish='$publish',view='$viewDefault',image='$newNameFile' WHERE id='$id'";
+        $sql = "UPDATE notes SET titleNotes='$titleNotes',descriptionNotes='$saveString',publish='$publish',view='$viewDefault',image='$newNameFile' WHERE id='$id'";
         $query = mysqli_query($db,$sql);
 
         if($query){
@@ -85,7 +99,7 @@ if(isset($_POST['editNotes'])){
             exit;
         }
     }else{
-      $sql = "UPDATE notes SET titleNotes='$titleNotes',descriptionNotes='$descriptionNotes',publish='$publish',view='$viewDefault',image='$newNameFile' WHERE id='$id'";
+      $sql = "UPDATE notes SET titleNotes='$titleNotes',descriptionNotes='$saveString',publish='$publish',view='$viewDefault',image='$newNameFile' WHERE id='$id'";
       $query = mysqli_query($db,$sql);
 
       if($query){
@@ -107,7 +121,7 @@ if(isset($_POST['editNotes'])){
 
   }else{
     if($publish == "Private"){
-        $sql = "UPDATE notes SET titleNotes='$titleNotes',descriptionNotes='$descriptionNotes',publish='$publish',view='$viewDefault' WHERE id='$id'";
+        $sql = "UPDATE notes SET titleNotes='$titleNotes',descriptionNotes='$saveString',publish='$publish',view='$viewDefault' WHERE id='$id'";
         $query = mysqli_query($db,$sql);
 
         if($query){
@@ -124,7 +138,7 @@ if(isset($_POST['editNotes'])){
             exit;
         }
     }else{
-        $sql = "UPDATE notes SET titleNotes='$titleNotes',descriptionNotes='$descriptionNotes',publish='$publish' WHERE id='$id'";
+        $sql = "UPDATE notes SET titleNotes='$titleNotes',descriptionNotes='$saveString',publish='$publish' WHERE id='$id'";
         $query = mysqli_query($db,$sql);
 
         if($query){
@@ -158,14 +172,14 @@ if(isset($_POST['editNotes'])){
 </head>
 <body>
   <form class="form_add_notes" method="POST" enctype="multipart/form-data">
-   <?php if($usernameFolder == $_SESSION['username']): ?> 
+   <?php if($usernameFolder == $username): ?> 
     <h1 class="title">Formulir edit catatan</h1>
 
     <input type="text" class="hidden" name="id" value="<?= $id; ?>" readonly required>
 
     <input type="text" name="titleNotes" value="<?= $titleNotes; ?>" required>
 
-    <textarea class="descriptionNotesAreas" name="descriptionNotes" value="<?= $descriptionNotes; ?>" required><?= $descriptionNotes; ?></textarea>
+    <textarea class="descriptionNotesAreas" name="descriptionNotes" value="<?= $descriptoSaveString; ?>" required><?= $descriptionNotes; ?></textarea>
 
     <!-- <input type="text" name="descriptionNotes" value="" required> -->
 

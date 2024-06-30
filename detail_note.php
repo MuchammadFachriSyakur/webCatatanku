@@ -1,12 +1,32 @@
 <?php
 session_start();
 include("database/config.php");
-$username = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
+$username = "testing";
+
+if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && !isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
+  echo "<script>
+    window.location.href = 'index.php';
+  </script>";
+  exit;
+}
+
+if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7'])){
+  $userSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
+  $sql = "SELECT * FROM user";
+  $query = mysqli_query($db,$sql);
+
+  while($data = mysqli_fetch_array($query)){
+    $hashUsernameDatabase = hash("sha256",$data['username']);
+    if($userSession === $hashUsernameDatabase){
+      $username = $data['username'];
+    }
+  }
+}
 
 if(isset($_POST['detailNotes'])){
   $id = $_POST['id'];
   $titleNotes = htmlspecialchars($_POST['titleNotes']);
-  $descriptionNotes = htmlspecialchars($_POST['descriptionNotes']);
+  $descriptionNotes = $_POST['descriptionNotes'];
   $publish = htmlspecialchars($_POST['publish']);
   $idFolder = htmlspecialchars($_POST['idFolder']);
   $usernameFolder = htmlspecialchars($_POST['usernameFolder']);
@@ -17,13 +37,6 @@ if(isset($_POST['detailNotes'])){
     echo "<script>
     window.location.href = 'dashboard_user.php';
   </script>";
-}
-
-if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && !isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7']) ){
-  echo "<script>
-    window.location.href = 'index.php';
-  </script>";
-  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -50,7 +63,7 @@ if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230
 
       <p class="date">Tanggal: <?= $created_at; ?></p>
 
-      <?php if($usernameFolder == $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']): ?>
+      <?php if($usernameFolder == $username): ?>
         <input type="text" class="hidden" name="id" value="<?= $id; ?>" readonly>
 
         <input type="text" class="hidden" name="titleNotes" value="<?= $titleNotes; ?>" readonly>

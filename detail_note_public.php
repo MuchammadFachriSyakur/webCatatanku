@@ -1,21 +1,37 @@
 <?php
 session_start();
 include("database/config.php");
+$usernameAvailable = false;
+$usernameFix = "";
+$profilePictureUsername = "";
 $username = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
+
 
 if(isset($_POST['detailNotes'])){
   $id = $_POST['id'];
   $titleNotes = htmlspecialchars($_POST['titleNotes']);
-  $descriptionNotes = htmlspecialchars($_POST['descriptionNotes']);
+  $descriptionNotes = $_POST['descriptionNotes'];
+  $string = nl2br(str_replace(" ", " &nbsp;", $descriptionNotes));
+  $descriptoSaveString = nl2br($descriptionNotes);
   $publish = htmlspecialchars($_POST['publish']);
   $idFolder = htmlspecialchars($_POST['idFolder']);
-  $usernameFolder = htmlspecialchars($_POST['usernameFolder']);
+  $idUsername = htmlspecialchars($_POST['usernameFolder']);
   $NameFolder = htmlspecialchars($_POST['NameFolder']);
   $created_at = htmlspecialchars($_POST['created_at']);
   $image = htmlspecialchars($_POST['image']);
   $view = $_POST['view'];
   $intView = (int)$view;
   $plusOne = $intView + 1;
+
+  $sqlUser = "SELECT * FROM user WHERE id='$idUsername'";
+  $queryUser = mysqli_query($db,$sqlUser); 
+  $resultQueryUser = mysqli_num_rows($queryUser);
+  if($resultQueryUser > 0){
+    $usernameAvailable = true;
+    $data = mysqli_fetch_array($queryUser);
+    $usernameFix = $data['username'];
+    $profilePictureUsername = $data['image'];
+  }
 
   $sql = "UPDATE notes SET view='$plusOne' WHERE id='$id'";
   $query = mysqli_query($db,$sql);
@@ -39,7 +55,7 @@ if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Notes || Detail notes</title>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="src/css/detail_note.css">
+    <link rel="stylesheet" href="src/css/detail_note_public.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -52,17 +68,28 @@ if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230
       <p class="titleNotes"><?= $titleNotes; ?></p>
       <div class="shadow-bottom"></div>
     </div>
-    <form action="proses_hapus_note.php" method="POST">
 
-      <p class="descriptionNotes"><?= $descriptionNotes; ?></p>
+    <section class="predifined-notes">
+      <div class="user-profile">
+        <div class="wrap">
+          <img src="img/<?= $profilePictureUsername; ?>" alt="Profile Picture User">
+          <span>By <?= $usernameFix; ?> <?= $created_at; ?></span>  
+        </div>
+        <span class="view-note"><i class="ph ph-eye"></i> <?= $plusOne; ?></span>
+      </div>
 
-      <p class="usernameFolder">Dibuat oleh: <?= $usernameFolder; ?></p>
-
-      <p class="date">Tanggal: <?= $created_at; ?></p>
-      
-      <p class="date">View: <?= $plusOne; ?></p>
-    </form>
+      <p class="title-notes"><?= $titleNotes; ?></p>
+ 
+      <p class="descriptionNotes"><?= "$descriptoSaveString"; ?></p>
+    </section>
 
 <script src="src/js/imageNote.js"></script>
 </body>
-</html>
+<!-- </html>
+<p>
+Pernahkah Anda berpikir: siapa sih yang membuat sebuah website? Jawabannya yaitu web developer. Nah, web developer adalah seseorang yang menggunakan skill teknisnya untuk mengembangkan dan mengelola website.
+
+Kalau Anda suka problem solving, memiliki kreativitas tinggi, dan selalu update tentang tren teknologi, menjadi seorang web developer adalah pilihan karier yang tepat. Tak perlu khawatir harus belajar mulai dari mana. 
+
+Di artikel ini, kami akan mengupas tuntas apa itu web developer, termasuk skill dan pengetahuan apa yang dibutuhkan untuk menjadi web developer sukses. Langsung saja, yuk simak artikelnya! 
+</p> -->

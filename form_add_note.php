@@ -3,6 +3,7 @@ session_start();
 include("database/config.php");
 $idFolder = 0;
 $nameFolder = "";
+$idUsername = 0;
 $usernameToAddFolder = "";
 $usernameFix = "";
 $usernameSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
@@ -14,16 +15,18 @@ if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230
   exit;
 }
 
-if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['is_login_user'])){
+if(isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2']) && isset($_SESSION['ee49dcf234054d9329748e09f2cd9d29e20f7a000a533812653f9e552ce67dd7'])){
   $userSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
   $sql = "SELECT * FROM user";
   $query = mysqli_query($db,$sql);
 
   while($data = mysqli_fetch_array($query)){
+    $idUsernameDatabase = $data['id'];
+    $usernameDatabase = $data['username'];
     $hashUsernameDatabase = hash("sha256",$data['username']);
-    if($usernameSession === $hashUsernameDatabase){
-      $usernameFix = $data['username'];
-      $profilePicture = $data['image'];
+    if($usernameSession == $hashUsernameDatabase){
+      $idUsername = $idUsernameDatabase;
+      $usernameFix = $usernameDatabase;
     }
   }
 }
@@ -36,14 +39,14 @@ if(isset($_POST['addNote'])){
 
 if(isset($_POST['tambahCatatan'])){
   $titleNotes = htmlspecialchars($_POST['titleNotes']);
-
   $descriptionNotes = htmlspecialchars($_POST['descriptionNotes']);
+  $saveString = nl2br(str_replace(" ", " &nbsp;",$descriptionNotes));
   $publish = htmlspecialchars($_POST['publish']);
 
   $namaFolder = htmlspecialchars($_POST['nameFolder']);
 
   $idfolder = $_POST['idFolder'];
-  $usernamefolder = htmlspecialchars($_POST['username']);
+  $idUsername = htmlspecialchars($_POST['idUsername']);
 
   $nameFile = $_FILES['background_notes']['name'];
   $sizeFile = $_FILES['background_notes']['size'];
@@ -87,7 +90,7 @@ if(isset($_POST['tambahCatatan'])){
   //lolos pengecekan 
   move_uploaded_file($tmpNameFile, 'img/' . $newNameFile);
    
-  $sql = "INSERT INTO notes (titleNotes,descriptionNotes,publish,idFolder,usernameFolder,NameFolder,image) VALUES ('$titleNotes','$descriptionNotes','$publish','$idfolder','$usernamefolder','$namaFolder','$newNameFile')";
+  $sql = "INSERT INTO notes (titleNotes,descriptionNotes,publish,idFolder,idUsername,NameFolder,image) VALUES ('$titleNotes','$saveString','$publish','$idfolder','$idUsername','$namaFolder','$newNameFile')";
   $query = mysqli_query($db,$sql);
   
   if($query){
@@ -138,7 +141,7 @@ if(!$usernameFix === $usernameToAddFolder){
 
     <input type="text" class="hidden" name="nameFolder" value="<?= $nameFolder; ?>" readonly required>
 
-    <input type="text" class="hidden" name="username" value="<?= $usernameToAddFolder; ?>" readonly required>
+    <input type="text" class="hidden" name="idUsername" value="<?= $idUsername; ?>" readonly required>
 
     <input type="text" name="titleNotes" placeholder="Masukan judul catatan anda" required>
 

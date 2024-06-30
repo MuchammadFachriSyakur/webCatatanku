@@ -148,7 +148,7 @@ if(isset($_GET['createFolder'])){
         $descriptionNotes = $data['descriptionNotes'];
         $publish = $data['publish'];
         $idFolder = $data['idFolder'];
-        $usernameFolder = $data['usernameFolder'];
+        $idUsername = $data['idUsername'];
         $NameFolder = $data['NameFolder'];
         $created_at = $data['created_at'];
         $image = $data['image'];
@@ -156,6 +156,18 @@ if(isset($_GET['createFolder'])){
         ?>
           <?php
           if($publish == "Publis"){
+            $sql = "SELECT * FROM user WHERE id='$idUsername'";
+            $queryUser = mysqli_query($db,$sql);
+            
+            if(mysqli_num_rows($queryUser) > 0){
+              $data = mysqli_fetch_array($queryUser);
+              $username = $data['username'];
+              $image = $data['image'];
+            }else{
+              $username = "akun tidak dikenali";
+              $image = "bguser.jpg";
+            }
+
             $cekData = true;
            echo "
            <form action='detail_note_public.php' method='POST' class='notes'>
@@ -170,7 +182,7 @@ if(isset($_GET['createFolder'])){
 
             <input type='text' class='hidden' name='idFolder' value='$idFolder'>
 
-            <input type='text' name='usernameFolder' class='hidden' value='$usernameFolder' readonly>
+            <input type='text' name='usernameFolder' class='hidden' value='$idUsername' readonly>
 
             <input type='text' class='hidden' name='NameFolder' value='$NameFolder'>
 
@@ -183,7 +195,7 @@ if(isset($_GET['createFolder'])){
             <button type='submit' name='detailNotes'>
               <div class='noteOwnerInformation'>
                <img src='img/$image' alt='Profile Picture'>
-               <p class='username'>$usernameFolder</p>
+               <p class='username'>$username</p>
               </div>
               <p class='title'>$titleNotes</p>
               <p class='description'>$descriptionNotes</p>
