@@ -1,16 +1,16 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
-  background-image: url('../../img/bg.jpg');
+body {
+  background-image: url("../../img/bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   object-fit: cover;
 }
-.wrapForm{
+.wrapForm {
   box-sizing: border-box;
   width: 100%;
   height: 100vh;
@@ -20,7 +20,7 @@ body{
   align-items: center;
   gap: 30px;
 }
-.wrapForm form{
+.wrapForm form {
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
@@ -30,21 +30,21 @@ body{
   align-items: center;
   font-family: "Open Sans", sans-serif;
   backdrop-filter: blur(10px);
-  border: 2px solid rgb(255,255,255,0.2);
+  border: 2px solid rgb(255, 255, 255, 0.2);
   border-radius: 24px;
   background-color: transparent;
   padding: 16px 24px;
 }
-.wrapForm form .title{
+.wrapForm form .title {
   margin-bottom: 36px;
   color: #fff;
 }
-.wrapForm form .file{
+.wrapForm form .file {
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 28px;
 }
-.wrapForm form .form-group{
+.wrapForm form .form-group {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -57,7 +57,7 @@ body{
   margin-bottom: 20px;
   padding: 4px;
 }
-.wrapForm form .message{
+.wrapForm form .message {
   box-sizing: border-box;
   width: 100%;
   display: block;
@@ -66,7 +66,7 @@ body{
   font-size: 14px;
   color: #fff;
 }
-.wrapForm form .form-group input{
+.wrapForm form .form-group input {
   box-sizing: border-box;
   width: 100%;
   outline: none;
@@ -76,36 +76,82 @@ body{
   background-color: transparent;
   font-size: 14px;
 }
-.wrapForm form .wrapEye{
+.wrapForm form .form-cookie {
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 8px;
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+.wrapForm form .form-cookie input {
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+.wrapForm form .wrapEye {
   box-sizing: border-box;
   display: flex;
   font-size: 18px;
   padding: 8px;
+  cursor: pointer;
 }
-.wrapForm form .wrapEye .ph-eye-slash{
+.wrapForm form .wrapEye .ph-eye-slash {
   display: none;
 }
-.wrapForm form a{
+/* .wrapForm form a {
   font-size: 14px;
   text-decoration: none;
   font-family: "Open Sans", sans-serif;
   color: #fff;
-  margin-bottom: 12px;
-}
-.wrapForm form .submitedFormLogin{
+} */
+.wrapForm form .submitedFormLogin {
   box-sizing: border-box;
   width: 100%;
   font-size: 16px;
   font-weight: 500;
   padding: 12px 24px;
   background-color: transparent;
-  border: 2px solid #6366F1;
-  background-color: #6366F1;
+  border: 2px solid #6366f1;
+  background-color: #6366f1;
   color: white;
   border-radius: 24px;
   animation: all 300ms ease-in-out;
 }
-.wrapForm form .submitedFormLogin:hover{
+.wrapForm form .submitedFormLogin:hover {
   background-color: white;
-  color: #6366F1;
+  color: #6366f1;
+}
+.wrapForm form .wrapHelp {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 24px;
+  margin-top: 8px;
+  padding: 0 8px;
+  gap: 8px;
+}
+.wrapForm form .wrapHelp a,
+.wrapForm form .wrapHelp button {
+  box-sizing: border-box;
+  padding: 0;
+  vertical-align: baseline;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
 }
