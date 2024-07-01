@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('database/config.php');
-$username = "anjay";
+$username = "";
 $usernameFix = "";
 $userSession = $_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230d5cb2'];
 
