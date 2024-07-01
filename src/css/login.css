@@ -94,8 +94,8 @@ body {
 .wrapForm form .form-cookie input {
   box-sizing: border-box;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 .wrapForm form .wrapEye {
   box-sizing: border-box;
@@ -107,12 +107,6 @@ body {
 .wrapForm form .wrapEye .ph-eye-slash {
   display: none;
 }
-/* .wrapForm form a {
-  font-size: 14px;
-  text-decoration: none;
-  font-family: "Open Sans", sans-serif;
-  color: #fff;
-} */
 .wrapForm form .submitedFormLogin {
   box-sizing: border-box;
   width: 100%;
