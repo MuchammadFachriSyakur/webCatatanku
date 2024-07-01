@@ -203,35 +203,71 @@ if(!$usernameOne == $usernameCookie){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Notes</title>
+    <title>My Notes || Setting Acount</title>
+    <link rel="stylesheet" href="src/css/setting_acount.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/asset/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/asset/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/asset/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="img/asset/favicon_io/site.webmanifest">
 </head>
 <body>
-   <form class="form_add_notes" method="POST" enctype="multipart/form-data">
+<header>
+      <a href="">Kembali</a>
+   </header>
+   <main>
+   <h1 class="title">Formulir Setting Acount</h1>
+    <form class="formSettingAcount" method="POST" enctype="multipart/form-data">
+      <label for="idUsername" class="hidden">
+         Id username :
+         <input type="text" name="idUsername" value="<?= $idUsername; ?>">
+      </label>
 
-    <p>Id username</p>
-    <input type="text" name="idUsername" value="<?= $idUsername; ?>"><br><br>
+      <label for="username" >
+         Username :
+         <input type="text" name="username" value="<?= $username; ?>">
+      </label>
 
-    <p>Username ubah</p>
-    <input type="text" name="username" value="<?= $username; ?>"><br><br>
+      <label for="usernameOne" class="hidden">
+         Username Awal :
+         <input type="text" name="usernameOne" value="<?= $usernameOne; ?>">
+      </label>
 
-    <p>Username awal</p>
-    <input type="text" name="usernameOne" value="<?= $usernameOne; ?>"><br><br>
+      <label for="password">
+         Password :
+         <input type="text" name="password" value="<?= $password; ?>">
+      </label>
 
-    <p>Password ubah</p>
-    <input type="text" name="password" value="<?= $password; ?>"><br><br>
+      <label for="passwordOne" class="hidden">
+         Password awal :
+         <input type="text" name="passwordOne" value="<?= $passwordOne; ?>">
+      </label>
 
-    <p>Password awal</p>
-    <input type="text" name="passwordOne" value="<?= $passwordOne; ?>"><br><br>
+      <label for="idUsername">
+         Email :
+         <input type="text" name="email" value="<?= $email; ?>">
+      </label>
 
-    <p>Email</p>
-    <input type="text" name="email" value="<?= $email; ?>"><br><br>
+      <label for="idUsername">
+         Gambar Sebelumnya :
+         <input type="image" src="img/<?= $image; ?>" alt="Profile Picture">
+      </label>
 
-    <p>Gambar Sebelumnya:</p>
-    <input type="image" src="img/<?= $image; ?>" alt=""><br><br>
-    <input type="text" name="previousImage" value="<?= $image; ?>">
+      <label for="previousImage" class="hidden">
+         Gambar Sebelumnya :
+         <input type="text" name="previousImage" value="<?= $image; ?>">
+      </label>
 
-    <input type="file" name="image" value="<?= $image; ?>">
-    <button type="submit" name="editAccount" formaction="">Edit</button>
-   </form>
+      <label for="image">
+         Gambar baru :
+         <input type="file" name="image" value="<?= $image; ?>">
+      </label>
+
+      <button type="submit" name="editAccount" formaction="">Edit</button>
+    </form>
+   </main>
 </body>
 </html>
