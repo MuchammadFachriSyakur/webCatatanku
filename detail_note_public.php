@@ -85,11 +85,4 @@ if(!isset($_SESSION['f32bee31be074f58db022158fb7f400bfa8b321f0012c9e50346e8bc230
 
 <script src="src/js/imageNote.js"></script>
 </body>
-<!-- </html>
-<p>
-Pernahkah Anda berpikir: siapa sih yang membuat sebuah website? Jawabannya yaitu web developer. Nah, web developer adalah seseorang yang menggunakan skill teknisnya untuk mengembangkan dan mengelola website.
-
-Kalau Anda suka problem solving, memiliki kreativitas tinggi, dan selalu update tentang tren teknologi, menjadi seorang web developer adalah pilihan karier yang tepat. Tak perlu khawatir harus belajar mulai dari mana. 
-
-Di artikel ini, kami akan mengupas tuntas apa itu web developer, termasuk skill dan pengetahuan apa yang dibutuhkan untuk menjadi web developer sukses. Langsung saja, yuk simak artikelnya! 
-</p> -->
+</html>
