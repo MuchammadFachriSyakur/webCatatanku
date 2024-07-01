@@ -1,10 +1,10 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body{
+body {
   box-sizing: border-box;
   width: 100%;
   min-height: 90vh;
@@ -13,11 +13,11 @@ body{
   justify-content: center;
   align-items: center;
 }
-.background-notes{
+.background-notes {
   box-sizing: border-box;
   width: 100%;
   height: 300px;
-  background-image: url('img/[data-background]');
+  background-image: url("img/[data-background]");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -27,7 +27,7 @@ body{
   justify-content: space-between;
   align-items: center;
 }
-.background-notes .titleNotes{
+.background-notes .titleNotes {
   box-sizing: border-box;
   width: 100%;
   text-align: center;
@@ -41,41 +41,42 @@ body{
   text-shadow: 2px 2px 0px #000;
   padding: 8px;
 }
-.background-notes .shadow-top{
+.background-notes .shadow-top {
   box-sizing: border-box;
   width: 100%;
   height: 30%;
-  background-image: linear-gradient(rgb(0, 0, 0, 0.5),transparent);
+  background-image: linear-gradient(rgb(0, 0, 0, 0.5), transparent);
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 0 20px;
 }
-.background-notes .shadow-top .back{
+.background-notes .shadow-top .back {
   box-sizing: border-box;
   font-size: 24px;
   font-weight: 800;
   padding: 6px 20px;
-  background-color: rgb(255, 255, 255,0.8);
+  background-color: rgb(255, 255, 255, 0.8);
   text-decoration: none;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
-.background-notes .shadow-bottom{
+.background-notes .shadow-bottom {
   box-sizing: border-box;
   width: 100%;
   height: 30%;
-  background-image: linear-gradient(transparent,rgb(0, 0, 0, 0.5));
+  background-image: linear-gradient(transparent, rgb(0, 0, 0, 0.5));
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 8px;
 }
-form{
+.predifined-notes {
   box-sizing: border-box;
   width: 100%;
   max-width: 600px;
@@ -85,23 +86,69 @@ form{
   align-items: center;
   padding: 24px 12px;
 }
-form input{
+.predifined-notes .user-profile {
   box-sizing: border-box;
   width: 100%;
-  padding: 8px 6px;
-  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 4px;
 }
-form .hidden{
-  box-sizing: border-box;
-  display: none;
-}
-form button{
+.predifined-notes .user-profile .wrap {
   box-sizing: border-box;
   width: 100%;
-  margin-top: 12px;
-  padding: 10px 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 8px;
 }
-form .usernameFolder,form .date{
+.predifined-notes .user-profile .wrap img {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+.predifined-notes .user-profile .wrap span {
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.predifined-notes .user-profile .view-note {
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.predifined-notes .title-notes {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.predifined-notes .usernameFolder,
+form .date {
   box-sizing: border-box;
   width: 100%;
   margin-top: 4px;
@@ -109,14 +156,14 @@ form .usernameFolder,form .date{
   font-size: 14px;
   font-weight: 400;
 }
-form .descriptionNotes{
+.predifined-notes .descriptionNotes {
   box-sizing: border-box;
   width: 100%;
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 12px;
 }
-form a{
+.predifined-notes a {
   box-sizing: border-box;
   width: 100%;
   color: black;

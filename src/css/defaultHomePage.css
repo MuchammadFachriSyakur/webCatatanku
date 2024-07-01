@@ -1,10 +1,10 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.modalProfileImage{
+.modalProfileImage {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -12,7 +12,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgb(0,0,0,0.5);
+  background-color: rgb(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,7 +20,7 @@
   padding: 24px;
   z-index: 250;
 }
-.modalProfileImage .closeModal{
+.modalProfileImage .closeModal {
   box-sizing: border-box;
   width: 100%;
   text-align: right;
@@ -30,7 +30,7 @@
   padding: 12px;
   cursor: pointer;
 }
-.modalProfileImage .wrapImage{
+.modalProfileImage .wrapImage {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -39,7 +39,7 @@
   justify-content: center;
   align-items: center;
 }
-.modalProfileImage .wrapImage img{
+.modalProfileImage .wrapImage img {
   box-sizing: border-box;
   width: 100%;
   max-width: 350px;
@@ -54,7 +54,7 @@
   -ms-border-radius: 100%;
   -o-border-radius: 100%;
 }
-.wrapAlertFormAdd{
+.wrapAlertFormAdd {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -63,7 +63,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgb(0,0,0,0.3);
+  background-color: rgb(0, 0, 0, 0.3);
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -71,10 +71,10 @@
   padding: 24px;
   z-index: 200;
 }
-.wrapAlertFormAdd.show{
+.wrapAlertFormAdd.show {
   display: flex;
 }
-.wrapAlertFormAdd .formCreateFolder{
+.wrapAlertFormAdd .formCreateFolder {
   box-sizing: border-box;
   width: 100%;
   max-width: 500px;
@@ -85,9 +85,9 @@
   justify-content: flex-start;
   align-items: center;
   border-radius: 8px;
-  box-shadow: 0 0 3px rgb(0,0,0,0.25);
+  box-shadow: 0 0 3px rgb(0, 0, 0, 0.25);
 }
-.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder{
+.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -95,12 +95,12 @@
   align-items: center;
   margin-bottom: 8px;
 }
-.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder .delete{
+.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder .delete {
   box-sizing: border-box;
   width: 20px;
   height: 20px;
 }
-.wrapAlertFormAdd .formCreateFolder input{
+.wrapAlertFormAdd .formCreateFolder input {
   box-sizing: border-box;
   width: 100%;
   padding: 12px 10px;
@@ -110,7 +110,7 @@
   border-radius: 5px;
   outline: none;
 }
-.wrapAlertFormAdd .formCreateFolder #publish{
+.wrapAlertFormAdd .formCreateFolder #publish {
   box-sizing: border-box;
   width: 100%;
   padding: 12px 10px;
@@ -120,7 +120,7 @@
   border-radius: 5px;
   outline: none;
 }
-.wrapAlertFormAdd .formCreateFolder .DeskripsiFolder{
+.wrapAlertFormAdd .formCreateFolder .DeskripsiFolder {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -129,10 +129,10 @@
   border-radius: 5px;
   outline: none;
 }
-.wrapAlertFormAdd .formCreateFolder .btn_create{
+.wrapAlertFormAdd .formCreateFolder .btn_create {
   box-sizing: border-box;
   width: 100%;
-  background-color: #228B22;
+  background-color: #228b22;
   color: white;
   padding: 12px 16px;
   margin-top: 12px;
@@ -142,12 +142,12 @@
   font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
-.wrapAlertFormAdd .formCreateFolder .btn_create:hover{
-  border: 2px solid #228B22;
+.wrapAlertFormAdd .formCreateFolder .btn_create:hover {
+  border: 2px solid #228b22;
   background-color: white;
-  color: #228B22;
+  color: #228b22;
 }
-body{
+body {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -155,17 +155,17 @@ body{
   justify-content: center;
   align-items: center;
 }
-main{
+main {
   box-sizing: border-box;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white; 
+  background-color: white;
   overflow: hidden;
 }
-main .nav-bar{
+main .nav-bar {
   box-sizing: border-box;
   width: 30%;
   height: 100%;
@@ -173,7 +173,7 @@ main .nav-bar{
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #F5F6F8;
+  background-color: #f5f6f8;
   background-image: url("../../img/bg3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -181,7 +181,7 @@ main .nav-bar{
   object-fit: cover;
   color: white;
 }
-main .nav-bar .full-wrap{
+main .nav-bar .full-wrap {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -193,18 +193,23 @@ main .nav-bar .full-wrap{
   backdrop-filter: blur(4px);
   color: white;
 }
-main .nav-bar .hiddenNavbar{
+main .nav-bar .hiddenNavbar {
   width: 100%;
   text-align: right;
   font-size: 20px;
-  color: black;
+  color: rgb(255, 255, 255);
 }
-main .nav-bar .hiddenNavbar .hidden{
+main .nav-bar .hiddenNavbar .close {
+  font-size: 28px;
+  font-weight: 600;
+  cursor: pointer;
+}
+main .nav-bar .hiddenNavbar .hidden {
   box-sizing: border-box;
   width: 25px;
   height: 25px;
 }
-main .nav-bar .wrapFolder{
+main .nav-bar .wrapFolder {
   box-sizing: border-box;
   width: 100%;
   height: 75%;
@@ -215,28 +220,28 @@ main .nav-bar .wrapFolder{
   margin-top: 32px;
   list-style-type: none;
   overflow: auto;
-  gap: 18px;
+  gap: 8px;
 }
-main .nav-bar .wrapFolder li{
- box-sizing: border-box;
- width: 100%;
- padding: 18px 20px;
+main .nav-bar .wrapFolder li {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 20px;
 }
-main .nav-bar .wrapFolder .FolderValid{
-  background-color: #DEDEDE;
+main .nav-bar .wrapFolder .FolderValid {
+  background-color: #dedede;
 }
-main .nav-bar .wrapFolder li form{
-  box-sizing: border-box; 
+main .nav-bar .wrapFolder li form {
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
 }
-main .nav-bar .wrapFolder li form .hidden{
+main .nav-bar .wrapFolder li form .hidden {
   display: none;
 }
-main .nav-bar .wrapFolder li form .nameFolder{
+main .nav-bar .wrapFolder li form .nameFolder {
   box-sizing: border-box;
   width: 70%;
   font-size: 16px;
@@ -244,8 +249,11 @@ main .nav-bar .wrapFolder li form .nameFolder{
   outline: none;
   background-color: transparent;
   padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-main .nav-bar .wrapFolder li form .wrapAction{
+main .nav-bar .wrapFolder li form .wrapAction {
   box-sizing: border-box;
   width: 30%;
   display: flex;
@@ -253,7 +261,7 @@ main .nav-bar .wrapFolder li form .wrapAction{
   align-items: center;
   gap: 8px;
 }
-main .nav-bar .wrapFolder li form .wrapAction button{
+main .nav-bar .wrapFolder li form .wrapAction button {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -265,7 +273,7 @@ main .nav-bar .wrapFolder li form .wrapAction button{
   outline: none;
   background-color: transparent;
 }
-main .nav-bar .wrapCreateFolder{
+main .nav-bar .wrapCreateFolder {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -276,39 +284,64 @@ main .nav-bar .wrapCreateFolder{
   padding: 8px 0;
   margin-top: 20px;
 }
-main .nav-bar .wrapCreateFolder .username{
+main .nav-bar .wrapCreateFolder .username {
   box-sizing: border-box;
   width: 100%;
   font-size: 20px;
   font-weight: 700;
 }
-main .nav-bar .wrapCreateFolder .createdFolder{
+main .nav-bar .wrapCreateFolder .createdFolder {
   box-sizing: border-box;
   font-size: 24px;
   color: white;
+  cursor: pointer;
 }
-main .nav-bar .logoutForm{
+main .nav-bar .logoutForm {
   box-sizing: border-box;
   width: 100%;
   margin-top: 16px;
 }
-main .nav-bar .logoutForm button{
+main .nav-bar .logoutForm button {
   box-sizing: border-box;
   width: 100%;
   padding: 18px 20px;
   border-radius: 30px;
   background-color: transparent;
-  border: 2px solid #14B8A6;
-  color: #14B8A6;
+  border: 2px solid #14b8a6;
+  color: #14b8a6;
   font-size: 16px;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
-main .nav-bar .logoutForm button:hover{
-  background-color: #14B8A6;
+main .nav-bar .logoutForm button:hover {
+  background-color: #14b8a6;
   color: white;
 }
-main .informationDisplay{
+main .nav-bar .settingAcount {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 16px;
+}
+main .nav-bar .settingAcount button {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 30px;
+  background-color: transparent;
+  border: 2px solid #14b8a6;
+  color: #14b8a6;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+main .nav-bar .settingAcount .hidden {
+  display: none;
+}
+main .nav-bar .settingAcount button:hover {
+  background-color: #14b8a6;
+  color: white;
+}
+main .informationDisplay {
   box-sizing: border-box;
   width: 70%;
   max-width: 1650px;
@@ -320,7 +353,7 @@ main .informationDisplay{
   padding: 24px;
   background-color: white;
 }
-main .informationDisplay .wrapHeader{
+main .informationDisplay .wrapHeader {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -329,14 +362,14 @@ main .informationDisplay .wrapHeader{
   align-items: center;
   margin-bottom: 24px;
 }
-main .informationDisplay .wrapHeader .wrap1{
+main .informationDisplay .wrapHeader .wrap1 {
   box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-main .informationDisplay .wrapHeader .wrap1 .profilePicture{
+main .informationDisplay .wrapHeader .wrap1 .profilePicture {
   box-sizing: border-box;
   width: 35px;
   height: 35px;
@@ -349,13 +382,14 @@ main .informationDisplay .wrapHeader .wrap1 .profilePicture{
   background-repeat: no-repeat;
   background-position: center;
   object-fit: cover;
+  cursor: pointer;
 }
-main .informationDisplay .wrapHeader .wrap1 .toggle{
+main .informationDisplay .wrapHeader .wrap1 .toggle {
   box-sizing: border-box;
   width: 30px;
   height: 30px;
 }
-main .informationDisplay .wrapHeader .searchData{
+main .informationDisplay .wrapHeader .searchData {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -363,22 +397,19 @@ main .informationDisplay .wrapHeader .searchData{
   align-items: center;
   margin-top: 16px;
   background-color: #f5f6f8;
-  border: 2px solid #DEDEDE;
+  border: 2px solid #dedede;
   border-radius: 4px;
   padding: 8px;
   gap: 4px;
 }
-main .informationDisplay .wrapHeader .searchData:hover{
-  box-shadow: 0 0 0 2px #404852;
-}
-main .informationDisplay .wrapHeader .searchData input[type=search]{
+main .informationDisplay .wrapHeader .searchData input[type="search"] {
   box-sizing: border-box;
   width: 100%;
   outline: none;
   border: none;
   background-color: transparent;
 }
-main .informationDisplay .wrapHeader .searchData button{
+main .informationDisplay .wrapHeader .searchData button {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -386,13 +417,14 @@ main .informationDisplay .wrapHeader .searchData button{
   background-color: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
-main .informationDisplay .wrapHeader .searchData button img{
+main .informationDisplay .wrapHeader .searchData button img {
   box-sizing: border-box;
   width: 20px;
   height: 20px;
 }
-main .informationDisplay .wrapNotesPublish{
+main .informationDisplay .wrapNotesPublish {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -403,7 +435,7 @@ main .informationDisplay .wrapNotesPublish{
   overflow: auto;
   gap: 18px;
 }
-main .informationDisplay .wrapNotesPublish .notes{
+main .informationDisplay .wrapNotesPublish .notes {
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
@@ -415,7 +447,7 @@ main .informationDisplay .wrapNotesPublish .notes{
   justify-content: center;
   align-items: center;
 }
-main .informationDisplay .wrapNotesPublish .notes button{
+main .informationDisplay .wrapNotesPublish .notes button {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -427,7 +459,36 @@ main .informationDisplay .wrapNotesPublish .notes button{
   outline: none;
   gap: 8px;
 }
-main .informationDisplay .wrapNotesPublish .notes button .title{
+main .informationDisplay .wrapNotesPublish .notes button .noteOwnerInformation {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+}
+main
+  .informationDisplay
+  .wrapNotesPublish
+  .notes
+  button
+  .noteOwnerInformation
+  img {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+}
+main .informationDisplay .wrapNotesPublish .notes button .title {
   box-sizing: border-box;
   width: 100%;
   white-space: nowrap;
@@ -437,7 +498,7 @@ main .informationDisplay .wrapNotesPublish .notes button .title{
   font-weight: 500;
   text-align: left;
 }
-main .informationDisplay .wrapNotesPublish .notes button .username{
+main .informationDisplay .wrapNotesPublish .notes button .username {
   box-sizing: border-box;
   width: 100%;
   white-space: nowrap;
@@ -446,9 +507,20 @@ main .informationDisplay .wrapNotesPublish .notes button .username{
   font-size: 12px;
   font-weight: 400;
   text-align: left;
-  color: #1E40AF;
+  color: #1e40af;
 }
-main .informationDisplay .wrapNotesPublish .notes button .description{
+main .informationDisplay .wrapNotesPublish .notes button .description {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+}
+main .informationDisplay .wrapNotesPublish .notes button .date {
   box-sizing: border-box;
   width: 100%;
   max-height: 50px;
@@ -459,26 +531,15 @@ main .informationDisplay .wrapNotesPublish .notes button .description{
   font-weight: 400;
   text-align: left;
 }
-main .informationDisplay .wrapNotesPublish .notes button .date{
-  box-sizing: border-box;
-  width: 100%;
-  max-height: 50px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  font-weight: 400;
-  text-align: left;
-}
-main .informationDisplay .wrapNotesPublish .notes input{
+main .informationDisplay .wrapNotesPublish .notes input {
   border: none;
   outline: none;
 }
-main .informationDisplay .wrapNotesPublish .notes .hidden{
+main .informationDisplay .wrapNotesPublish .notes .hidden {
   box-sizing: border-box;
   display: none;
 }
-main .informationDisplay .wrapNotesPublish .noNote{
+main .informationDisplay .wrapNotesPublish .noNote {
   box-sizing: border-box;
   width: 100%;
   height: 60%;
@@ -488,7 +549,7 @@ main .informationDisplay .wrapNotesPublish .noNote{
   align-items: center;
   gap: 8px;
 }
-main .informationDisplay .wrapNotesPublish .noNote .card-information{
+main .informationDisplay .wrapNotesPublish .noNote .card-information {
   box-sizing: border-box;
   width: 100%;
   max-width: 700px;
@@ -498,7 +559,7 @@ main .informationDisplay .wrapNotesPublish .noNote .card-information{
   align-items: center;
   gap: 8px;
 }
-main .informationDisplay .wrapNotesPublish .noNote .card-information img{
+main .informationDisplay .wrapNotesPublish .noNote .card-information img {
   box-sizing: border-box;
   width: 250px;
   height: 250px;
@@ -508,7 +569,7 @@ main .informationDisplay .wrapNotesPublish .noNote .card-information img{
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
 }
-main .informationDisplay .wrapNotesPublish .noNote .card-information .title{
+main .informationDisplay .wrapNotesPublish .noNote .card-information .title {
   box-sizing: border-box;
   width: 100%;
   text-align: center;
@@ -516,26 +577,31 @@ main .informationDisplay .wrapNotesPublish .noNote .card-information .title{
   font-weight: 600;
   margin-top: 16px;
 }
-main .informationDisplay .wrapNotesPublish .noNote .card-information .description{
+main
+  .informationDisplay
+  .wrapNotesPublish
+  .noNote
+  .card-information
+  .description {
   box-sizing: border-box;
   width: 100%;
   text-align: center;
   font-size: 14px;
   font-weight: 400;
 }
-@media(min-width: 768px){
-  main .nav-bar .hiddenNavbar{
+@media (min-width: 768px) {
+  main .nav-bar .hiddenNavbar {
     display: none;
   }
-  main .informationDisplay .wrapHeader .wrap1 .toggle{
+  main .informationDisplay .wrapHeader .wrap1 .toggle {
     display: none;
   }
 }
-@media(max-width: 768px){
-  main .nav-bar{
+@media (max-width: 768px) {
+  main .nav-bar {
     display: none;
   }
-  main .nav-bar.show{
+  main .nav-bar.show {
     display: flex;
     width: 100%;
     position: fixed;
@@ -545,7 +611,7 @@ main .informationDisplay .wrapNotesPublish .noNote .card-information .descriptio
     right: 0;
     z-index: 100;
   }
-  main .informationDisplay{
+  main .informationDisplay {
     width: 100%;
   }
 }

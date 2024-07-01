@@ -1,10 +1,10 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.wrapAlertFormAdd{
+.wrapAlertFormAdd {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -13,7 +13,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgb(0,0,0,0.3);
+  background-color: rgb(0, 0, 0, 0.3);
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -21,10 +21,10 @@
   padding: 24px;
   z-index: 200;
 }
-.wrapAlertFormAdd.show{
+.wrapAlertFormAdd.show {
   display: flex;
 }
-.wrapAlertFormAdd .formCreateFolder{
+.wrapAlertFormAdd .formCreateFolder {
   box-sizing: border-box;
   width: 100%;
   max-width: 500px;
@@ -35,9 +35,9 @@
   justify-content: flex-start;
   align-items: center;
   border-radius: 8px;
-  box-shadow: 0 0 3px rgb(0,0,0,0.25);
+  box-shadow: 0 0 3px rgb(0, 0, 0, 0.25);
 }
-.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder{
+.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -45,12 +45,12 @@
   align-items: center;
   margin-bottom: 8px;
 }
-.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder .delete{
+.wrapAlertFormAdd .formCreateFolder .deleteAlertFolder .delete {
   box-sizing: border-box;
   width: 20px;
   height: 20px;
 }
-.wrapAlertFormAdd .formCreateFolder input{
+.wrapAlertFormAdd .formCreateFolder input {
   box-sizing: border-box;
   width: 100%;
   padding: 12px 10px;
@@ -60,7 +60,7 @@
   border-radius: 5px;
   outline: none;
 }
-.wrapAlertFormAdd .formCreateFolder #publish{
+.wrapAlertFormAdd .formCreateFolder #publish {
   box-sizing: border-box;
   width: 100%;
   padding: 12px 10px;
@@ -70,7 +70,7 @@
   border-radius: 5px;
   outline: none;
 }
-.wrapAlertFormAdd .formCreateFolder .DeskripsiFolder{
+.wrapAlertFormAdd .formCreateFolder .DeskripsiFolder {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -79,10 +79,10 @@
   border-radius: 5px;
   outline: none;
 }
-.wrapAlertFormAdd .formCreateFolder .btn_create{
+.wrapAlertFormAdd .formCreateFolder .btn_create {
   box-sizing: border-box;
   width: 100%;
-  background-color: #228B22;
+  background-color: #228b22;
   color: white;
   padding: 12px 16px;
   margin-top: 12px;
@@ -92,12 +92,12 @@
   font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
-.wrapAlertFormAdd .formCreateFolder .btn_create:hover{
-  border: 2px solid #228B22;
+.wrapAlertFormAdd .formCreateFolder .btn_create:hover {
+  border: 2px solid #228b22;
   background-color: white;
-  color: #228B22;
+  color: #228b22;
 }
-body{
+body {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -105,16 +105,16 @@ body{
   justify-content: center;
   align-items: center;
 }
-main{
+main {
   box-sizing: border-box;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white; 
+  background-color: white;
 }
-main .nav-bar{
+main .nav-bar {
   box-sizing: border-box;
   width: 30%;
   height: 100%;
@@ -122,7 +122,7 @@ main .nav-bar{
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #F5F6F8;
+  background-color: #f5f6f8;
   background-image: url("../../img/bg3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -130,7 +130,7 @@ main .nav-bar{
   object-fit: cover;
   color: white;
 }
-main .nav-bar .full-wrap{
+main .nav-bar .full-wrap {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -142,18 +142,18 @@ main .nav-bar .full-wrap{
   backdrop-filter: blur(4px);
   color: white;
 }
-main .nav-bar .hiddenNavbar{
+main .nav-bar .hiddenNavbar {
   width: 100%;
   text-align: right;
   font-size: 20px;
   color: black;
 }
-main .nav-bar .hiddenNavbar .hidden{
+main .nav-bar .hiddenNavbar .hidden {
   box-sizing: border-box;
   width: 25px;
   height: 25px;
 }
-main .nav-bar .wrapFolder{
+main .nav-bar .wrapFolder {
   box-sizing: border-box;
   width: 100%;
   height: 75%;
@@ -167,66 +167,34 @@ main .nav-bar .wrapFolder{
   color: white;
   gap: 18px;
 }
-main .nav-bar .wrapFolder li{
+main .nav-bar .wrapFolder li {
   box-sizing: border-box;
   width: 100%;
   padding: 18px 20px;
   color: rgb(255, 255, 255);
 }
-main .nav-bar .wrapFolder .backed{
+main .nav-bar .wrapFolder .backed {
   box-sizing: border-box;
   width: 100%;
 }
-main .nav-bar .wrapFolder .FolderValid{
-  background-color: #DEDEDE;
-  color: white;
+main .nav-bar .wrapFolder .FolderValid {
+  background-color: #dedede;
+  color: rgb(0, 0, 0);
 }
-main .nav-bar .wrapFolder li .back{
-  box-sizing: border-box;
-  width: 100%;
-  font-size: 16px;
-  color: white;
-  text-decoration: none;
-}
-main .nav-bar .wrapFolder li form{
-  box-sizing: border-box; 
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-}
-main .nav-bar .wrapFolder li form .hidden{
-  display: none;
-}
-main .nav-bar .wrapFolder li form .nameFolder{
+main .nav-bar .wrapFolder .FolderValid .namesFolder {
   box-sizing: border-box;
   width: 70%;
   font-size: 16px;
   border: none;
   outline: none;
   background-color: transparent;
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-main .nav-bar .wrapFolder li .FolderValid .namesFolder{
-  box-sizing: border-box;
-  width: 70%;
-  font-size: 16px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: black;
-}
-main .nav-bar .wrapFolder li form .wrapAction{
-  box-sizing: border-box;
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-main .nav-bar .wrapFolder li form .wrapAction button{
+main .nav-bar .wrapFolder .FolderValid form .wrapAction button {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -238,7 +206,58 @@ main .nav-bar .wrapFolder li form .wrapAction button{
   outline: none;
   background-color: transparent;
 }
-main .nav-bar .wrapCreateFolder{
+main .nav-bar .wrapFolder li .back {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+main .nav-bar .wrapFolder li form {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+main .nav-bar .wrapFolder li form .hidden {
+  display: none;
+}
+main .nav-bar .wrapFolder li form .nameFolder {
+  box-sizing: border-box;
+  width: 70%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+main .nav-bar .wrapFolder li form .wrapAction {
+  box-sizing: border-box;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+main .nav-bar .wrapFolder li form .wrapAction button {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  padding: 8px;
+  color: white;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+main .nav-bar .wrapCreateFolder {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -249,64 +268,64 @@ main .nav-bar .wrapCreateFolder{
   padding: 8px 0;
   margin-top: 20px;
 }
-main .nav-bar .wrapCreateFolder .username{
+main .nav-bar .wrapCreateFolder .username {
   box-sizing: border-box;
   width: 100%;
   font-size: 20px;
   font-weight: 700;
 }
-main .nav-bar .wrapCreateFolder .createdFolder{
+main .nav-bar .wrapCreateFolder .createdFolder {
   box-sizing: border-box;
   font-size: 24px;
   color: white;
   cursor: pointer;
 }
-main .nav-bar .logoutForm{
+main .nav-bar .logoutForm {
   box-sizing: border-box;
   width: 100%;
   margin-top: 16px;
 }
-main .nav-bar .logoutForm button{
+main .nav-bar .logoutForm button {
   box-sizing: border-box;
   width: 100%;
   padding: 18px 20px;
   border-radius: 30px;
   background-color: transparent;
-  border: 2px solid #14B8A6;
-  color: #14B8A6;
+  border: 2px solid #14b8a6;
+  color: #14b8a6;
   font-size: 16px;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
-main .nav-bar .logoutForm button:hover{
-  background-color: #14B8A6;
+main .nav-bar .logoutForm button:hover {
+  background-color: #14b8a6;
   color: white;
 }
-main .nav-bar .settingAcount{
+main .nav-bar .settingAcount {
   box-sizing: border-box;
   width: 100%;
   margin-top: 16px;
 }
-main .nav-bar .settingAcount button{
+main .nav-bar .settingAcount button {
   box-sizing: border-box;
   width: 100%;
   padding: 18px 20px;
   border-radius: 30px;
   background-color: transparent;
-  border: 2px solid #14B8A6;
-  color: #14B8A6;
+  border: 2px solid #14b8a6;
+  color: #14b8a6;
   font-size: 16px;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
-main .nav-bar .settingAcount .hidden{
+main .nav-bar .settingAcount .hidden {
   display: none;
 }
-main .nav-bar .settingAcount button:hover{
-  background-color: #14B8A6;
+main .nav-bar .settingAcount button:hover {
+  background-color: #14b8a6;
   color: white;
 }
-main .informationDisplay{
+main .informationDisplay {
   box-sizing: border-box;
   width: 70%;
   max-width: 1650px;
@@ -318,7 +337,7 @@ main .informationDisplay{
   padding: 24px;
   background-color: white;
 }
-main .informationDisplay .wrapHeader{
+main .informationDisplay .wrapHeader {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -327,19 +346,19 @@ main .informationDisplay .wrapHeader{
   align-items: center;
   margin-bottom: 24px;
 }
-main .informationDisplay .wrapHeader .wrap1{
+main .informationDisplay .wrapHeader .wrap1 {
   box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-main .informationDisplay .wrapHeader .wrap1 .toggle{
+main .informationDisplay .wrapHeader .wrap1 .toggle {
   box-sizing: border-box;
   width: 30px;
   height: 30px;
 }
-main .informationDisplay .wrapHeader .searchData{
+main .informationDisplay .wrapHeader .searchData {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -347,22 +366,22 @@ main .informationDisplay .wrapHeader .searchData{
   align-items: center;
   margin-top: 16px;
   background-color: #f5f6f8;
-  border: 2px solid #DEDEDE;
+  border: 2px solid #dedede;
   border-radius: 4px;
   padding: 8px;
   gap: 4px;
 }
-main .informationDisplay .wrapHeader .searchData:hover{
+main .informationDisplay .wrapHeader .searchData:hover {
   box-shadow: 0 0 0 2px #404852;
 }
-main .informationDisplay .wrapHeader .searchData input[type=search]{
+main .informationDisplay .wrapHeader .searchData input[type="search"] {
   box-sizing: border-box;
   width: 100%;
   outline: none;
   border: none;
   background-color: transparent;
 }
-main .informationDisplay .wrapHeader .searchData button{
+main .informationDisplay .wrapHeader .searchData button {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -371,12 +390,12 @@ main .informationDisplay .wrapHeader .searchData button{
   border: none;
   outline: none;
 }
-main .informationDisplay .wrapHeader .searchData button img{
+main .informationDisplay .wrapHeader .searchData button img {
   box-sizing: border-box;
   width: 20px;
   height: 20px;
 }
-main .informationDisplay .addNote{
+main .informationDisplay .addNote {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -385,15 +404,15 @@ main .informationDisplay .addNote{
   align-items: flex-start;
   margin-bottom: 32px;
 }
-main .informationDisplay .addNote .hidden{
+main .informationDisplay .addNote .hidden {
   box-sizing: border-box;
   display: none;
 }
-main .informationDisplay .addNote button{
+main .informationDisplay .addNote button {
   box-sizing: border-box;
   padding: 6px 8px;
 }
-main .informationDisplay .wrapNote{
+main .informationDisplay .wrapNote {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -402,7 +421,7 @@ main .informationDisplay .wrapNote{
   align-items: center;
   gap: 18px;
 }
-main .informationDisplay .wrapNote .notes{
+main .informationDisplay .wrapNote .notes {
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
@@ -414,7 +433,7 @@ main .informationDisplay .wrapNote .notes{
   justify-content: center;
   align-items: center;
 }
-main .informationDisplay .wrapNote .notes button{
+main .informationDisplay .wrapNote .notes button {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -426,7 +445,7 @@ main .informationDisplay .wrapNote .notes button{
   outline: none;
   gap: 8px;
 }
-main .informationDisplay .wrapNote .notes button .title{
+main .informationDisplay .wrapNote .notes button .title {
   box-sizing: border-box;
   width: 100%;
   white-space: nowrap;
@@ -436,7 +455,18 @@ main .informationDisplay .wrapNote .notes button .title{
   font-weight: 500;
   text-align: left;
 }
-main .informationDisplay .wrapNote .notes button .description{
+main .informationDisplay .wrapNote .notes button .description {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+}
+main .informationDisplay .wrapNote .notes button .date {
   box-sizing: border-box;
   width: 100%;
   max-height: 50px;
@@ -447,38 +477,27 @@ main .informationDisplay .wrapNote .notes button .description{
   font-weight: 400;
   text-align: left;
 }
-main .informationDisplay .wrapNote .notes button .date{
-  box-sizing: border-box;
-  width: 100%;
-  max-height: 50px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  font-weight: 400;
-  text-align: left;
-}
-main .informationDisplay .wrapNote .notes input{
+main .informationDisplay .wrapNote .notes input {
   border: none;
   outline: none;
 }
-main .informationDisplay .wrapNote .notes .hidden{
+main .informationDisplay .wrapNote .notes .hidden {
   box-sizing: border-box;
   display: none;
 }
-@media(min-width: 768px){
-  main .nav-bar .hiddenNavbar{
+@media (min-width: 768px) {
+  main .nav-bar .hiddenNavbar {
     display: none;
   }
-  main .informationDisplay .wrapHeader .wrap1 .toggle{
+  main .informationDisplay .wrapHeader .wrap1 .toggle {
     display: none;
   }
 }
-@media(max-width: 768px){
-  main .nav-bar{
+@media (max-width: 768px) {
+  main .nav-bar {
     display: none;
   }
-  main .nav-bar.show{
+  main .nav-bar.show {
     display: flex;
     width: 100%;
     position: fixed;
@@ -488,7 +507,7 @@ main .informationDisplay .wrapNote .notes .hidden{
     right: 0;
     z-index: 100;
   }
-  main .informationDisplay{
+  main .informationDisplay {
     width: 100%;
   }
 }
